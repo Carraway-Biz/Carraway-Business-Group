@@ -22,7 +22,7 @@
       --white:  #FFFFFF;
       --text:   #E5E7EB;
       --radius: 16px;
-      --nav-h:  136px;
+      --nav-h:  116px;
     }
     html { scroll-behavior: smooth; }
     body {
@@ -461,9 +461,10 @@
     }
     .trust-section h2 { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 48px; }
     .trust-badges {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      display: flex; justify-content: center; flex-wrap: wrap;
       gap: 20px;
     }
+    .trust-badge-card { flex: 0 1 240px; }
     .trust-badge-card {
       background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07);
       border-radius: 14px; padding: 28px 20px; text-align: center;
@@ -549,13 +550,6 @@
     }
     .footer-bottom a { color: var(--gray); }
     .footer-bottom a:hover { color: var(--white); }
-    .vet-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 12px; border-radius: 20px;
-      background: rgba(255,107,53,.12); border: 1px solid rgba(255,107,53,.25);
-      font-size: 11px; font-weight: 700; color: var(--orange);
-      text-transform: uppercase; letter-spacing: .1em;
-    }
 
     /* ─── Scroll Animations ──────────────────────────────────────────── */
     .fade-up {
@@ -601,9 +595,7 @@
 <!-- ─── Navigation ─────────────────────────────────────────────────── -->
 <nav id="navbar">
   <div class="container">
-    <a href="#" class="nav-logo">
-      <img src="Carraway.png" alt="Carraway Business Group" style="height:120px;display:block;padding:8px 0;background:transparent;">
-    </a>
+    <a href="#home"><img src="Carraway.png" alt="Carraway Business Group" style="height:100px !important;width:auto;display:block;"></a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#tools">Tools</a></li>
@@ -852,6 +844,11 @@
         <div class="trust-badge-title">Nationwide Service</div>
         <div class="trust-badge-desc">Based in Arizona, serving businesses across all 50 states.</div>
       </div>
+      <div class="trust-badge-card">
+        <div class="trust-badge-icon">⚖️</div>
+        <div class="trust-badge-title">Integrity & Compliance</div>
+        <div class="trust-badge-desc">Licensed, ethical, and fully compliant. We operate with honesty at every step.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -872,7 +869,7 @@
             <div class="contact-item-icon">📧</div>
             <div class="contact-item-text">
               <label>Email</label>
-              <a href="mailto:ben@carrawaygroup.com">ben@carrawaygroup.com</a>
+              <a href="mailto:ben@gocarraway.com">ben@gocarraway.com</a>
             </div>
           </div>
           <div class="contact-item">
