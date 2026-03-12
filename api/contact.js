@@ -3,11 +3,7 @@ const AIRTABLE_TABLE = 'tblZ8RvYDwXngf1gO';
 const AIRTABLE_URL   = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`;
 const RESEND_URL     = 'https://api.resend.com/emails';
 const NOTIFY_TO      = 'Ben@gocarraway.com';
-// To send from your own domain, verify gocarraway.com in Resend dashboard
-// and change this to e.g. noreply@gocarraway.com
-// Until then, onboarding@resend.dev works but ONLY delivers to the email
-// address registered on your Resend account.
-const NOTIFY_FROM    = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+const NOTIFY_FROM    = 'notifications@send.gocarraway.com';
 
 export default async function handler(req, res) {
   // ── CORS ─────────────────────────────────────────────────────────
