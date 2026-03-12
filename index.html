@@ -1170,7 +1170,10 @@
         document.getElementById('formSuccess').style.display = 'block';
       } else {
         const body = await res.json().catch(() => ({}));
-        errDiv.textContent   = body.error || 'Something went wrong. Please try again or email ben@gocarraway.com directly.';
+        const msg = body.airtable_detail
+          ? `Submission error: ${body.airtable_detail}`
+          : body.error || 'Something went wrong. Please try again or email ben@gocarraway.com directly.';
+        errDiv.textContent   = msg;
         errDiv.style.display = 'block';
         btn.disabled    = false;
         btn.textContent = 'Send Message →';
