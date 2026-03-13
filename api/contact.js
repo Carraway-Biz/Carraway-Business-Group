@@ -24,7 +24,7 @@ export default async function handler(req, res) {
 
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
-    console.warn('[contact] RESEND_API_KEY is not set — email notification will be skipped');
+    console.error('[contact] RESEND_API_KEY is not set — email notification will be SKIPPED. Set this env var in Vercel.');
   }
 
   // ── Parse body ────────────────────────────────────────────────────
