@@ -1,3 +1,4 @@
+// v2 - gocarraway.com verified domain
 import { Resend } from 'resend';
 
 const AIRTABLE_BASE  = 'appf20RCOmCyu8BEx';
