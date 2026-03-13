@@ -1,9 +1,10 @@
+import { Resend } from 'resend';
+
 const AIRTABLE_BASE  = 'appf20RCOmCyu8BEx';
 const AIRTABLE_TABLE = 'tblZ8RvYDwXngf1gO';
 const AIRTABLE_URL   = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`;
-const RESEND_URL     = 'https://api.resend.com/emails';
 const NOTIFY_TO      = 'Ben@gocarraway.com';
-const NOTIFY_FROM    = 'notifications@send.gocarraway.com';
+const NOTIFY_FROM    = 'Ben@gocarraway.com';
 
 export default async function handler(req, res) {
   // ── CORS ─────────────────────────────────────────────────────────
@@ -115,33 +116,33 @@ export default async function handler(req, res) {
       const subject = `New Carraway Inquiry — ${businessName || `${firstName} ${lastName}`}`;
       const html = buildEmailHtml({ firstName, lastName, businessName, email, phone, businessType, fundingAmount, message });
 
+      const resendPayload = {
+        from:    NOTIFY_FROM,
+        to:      NOTIFY_TO,
+        subject,
+        html,
+      };
+
+      console.log('[contact] Calling Resend API with payload:', JSON.stringify({
+        from:    resendPayload.from,
+        to:      resendPayload.to,
+        subject: resendPayload.subject,
+      }));
+
       try {
-        const resendRes = await fetch(RESEND_URL, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${resendKey}`,
-            'Content-Type':  'application/json',
-          },
-          body: JSON.stringify({
-            from:    NOTIFY_FROM,
-            to:      NOTIFY_TO,
-            subject,
-            html,
-          }),
-        });
+        const resend = new Resend(resendKey);
+        const resendResult = await resend.emails.send(resendPayload);
 
-        const resendText = await resendRes.text();
-        console.log('[contact] Resend status:', resendRes.status);
-        console.log('[contact] Resend response:', resendText);
+        console.log('[contact] Resend full response:', JSON.stringify(resendResult));
 
-        if (!resendRes.ok) {
+        if (resendResult.error) {
           // Log but don't fail the request — Airtable save already succeeded
-          console.error('[contact] Resend failed (non-fatal):', resendText);
+          console.error('[contact] Resend returned an error (non-fatal):', JSON.stringify(resendResult.error));
         } else {
-          console.log('[contact] Notification email sent to', NOTIFY_TO);
+          console.log('[contact] Notification email sent successfully. Email id:', resendResult.data?.id, '→', NOTIFY_TO);
         }
       } catch (emailErr) {
-        console.error('[contact] Resend fetch error (non-fatal):', emailErr.message);
+        console.error('[contact] Resend threw an exception (non-fatal):', emailErr.message, emailErr.stack);
       }
     }
 
