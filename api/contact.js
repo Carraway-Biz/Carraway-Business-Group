@@ -5,7 +5,7 @@ const AIRTABLE_BASE  = 'appf20RCOmCyu8BEx';
 const AIRTABLE_TABLE = 'tblZ8RvYDwXngf1gO';
 const AIRTABLE_URL   = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`;
 const NOTIFY_TO      = 'Ben@gocarraway.com';
-const NOTIFY_FROM    = 'notifications@gocarraway.com';
+const NOTIFY_FROM    = 'notifications@send.gocarraway.com';
 
 export default async function handler(req, res) {
   // ── CORS ─────────────────────────────────────────────────────────
