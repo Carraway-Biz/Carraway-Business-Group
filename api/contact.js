@@ -131,6 +131,7 @@ export default async function handler(req, res) {
       }));
 
       try {
+        console.log('Resend key present:', !!resendKey, 'length:', resendKey?.length);
         const resend = new Resend(resendKey);
         const resendResult = await resend.emails.send(resendPayload);
 
