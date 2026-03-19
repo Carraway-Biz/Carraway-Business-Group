@@ -83,11 +83,12 @@
     .progress-steps { display: flex; align-items: center; margin-bottom: 36px; }
     .step-item { display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; }
     .step-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; transition: all .3s; position: relative; z-index: 1; }
-    .step-circle.future { background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.15); color: var(--gray); }
+    .step-circle.future { background: #1F2937; border: 2px solid #374151; color: #6B7280; }
     .step-circle.current { background: var(--orange); border: 2px solid var(--orange); color: var(--white); }
-    .step-circle.done { background: rgba(0,191,255,.15); border: 2px solid var(--cyan); color: var(--cyan); }
+    .step-circle.done { background: var(--cyan); border: 2px solid var(--cyan); color: var(--white); }
+    .step-circle.done svg { stroke: var(--white); }
     .step-label { font-size: 11px; font-weight: 600; margin-top: 6px; text-align: center; color: var(--gray); white-space: nowrap; }
-    .step-label.current { color: var(--orange); }
+    .step-label.current { color: var(--cyan); }
     .step-label.done { color: var(--cyan); }
     .step-connector { flex: 1; height: 2px; background: rgba(255,255,255,.1); position: relative; top: -15px; }
     .step-connector.done { background: var(--cyan); }
@@ -204,7 +205,10 @@
     .confirm-screen { display: none; text-align: center; padding: 20px 0; }
     .confirm-screen.active { display: block; }
     .confirm-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(0,191,255,.12); border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-    .confirm-id { font-size: 20px; font-weight: 800; color: var(--cyan); margin: 8px 0 24px; letter-spacing: .06em; }
+    .app-id-card { background: rgba(0,191,255,.07); border: 2px solid rgba(0,191,255,.35); border-radius: 14px; padding: 20px 28px; margin: 8px auto 24px; display: inline-block; min-width: 260px; }
+    .app-id-card-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+    .confirm-id { font-size: 26px; font-weight: 900; color: var(--cyan); letter-spacing: .08em; margin: 0 0 6px; }
+    .app-id-card-sub { font-size: 12px; color: rgba(255,255,255,.45); }
     .timeline { display: flex; flex-direction: column; gap: 16px; margin: 32px 0; text-align: left; }
     .timeline-item { display: flex; gap: 20px; align-items: flex-start; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 20px; }
     .timeline-dot { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,191,255,.15); border: 2px solid var(--cyan); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--cyan); font-weight: 800; font-size: 13px; }
@@ -715,8 +719,14 @@
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00BFFF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h2 style="font-size:28px;font-weight:900;margin-bottom:8px">Application Received!</h2>
-        <p style="color:rgba(255,255,255,.55);margin-bottom:8px">Your application has been submitted successfully.</p>
-        <div class="confirm-id" id="appId"></div>
+        <p style="color:rgba(255,255,255,.55);margin-bottom:16px">Your application has been submitted successfully.</p>
+
+        <div class="app-id-card">
+          <div class="app-id-card-label">Your Application ID</div>
+          <div class="confirm-id" id="appId"></div>
+          <div class="app-id-card-sub">Save this for your records</div>
+        </div>
+
         <p style="color:rgba(255,255,255,.55);font-size:14px;margin-bottom:8px">Ben personally reviews every application — here's what happens next:</p>
 
         <div class="timeline">
@@ -744,7 +754,7 @@
         </div>
 
         <div class="confirm-actions">
-          <a href="mailto:Ben@gocarraway.com" class="btn btn-outline">📧 Email Missing Documents</a>
+          <a id="confirmEmailLink" href="mailto:Ben@gocarraway.com" class="btn btn-outline">📧 Email Missing Documents</a>
           <a href="index.html#contact" class="btn btn-cyan">📅 Book a Call with Ben</a>
         </div>
       </div>
@@ -1072,16 +1082,117 @@ function updateSubmitBtn() {
   btn.disabled = !(document.getElementById('consent1').checked && document.getElementById('consent2').checked);
 }
 
-function submitApplication() {
-  const appId = 'CBG-' + Math.floor(100000 + Math.random() * 900000);
-  document.getElementById('appId').textContent = 'Application ID: ' + appId;
+function collectSubmissionPayload() {
+  // Owners
+  const owners = [];
+  document.querySelectorAll('.owner-block').forEach((b, i) => {
+    const idx = i + 1;
+    owners.push({
+      firstName: getVal('ownerFirst' + idx),
+      mi: getVal('ownerMi' + idx),
+      lastName: getVal('ownerLast' + idx),
+      dob: getVal('ownerDob' + idx),
+      ownership: getVal('ownerPct' + idx),
+      street: getVal('ownerStreet' + idx),
+      city: getVal('ownerCity' + idx),
+      state: getVal('ownerState' + idx),
+      zip: getVal('ownerZip' + idx),
+      phone: getVal('ownerPhone' + idx),
+      email: getVal('ownerEmail' + idx),
+    });
+  });
+  return {
+    businessName: getVal('bizName'),
+    dba: getVal('bizDba'),
+    entityType: getVal('bizEntity'),
+    industry: getVal('bizIndustry'),
+    startDate: getVal('bizStartDate'),
+    ein: getVal('bizEin'),
+    address: [getVal('bizStreet'), getVal('bizCity'), getVal('bizState'), getVal('bizZip')].filter(Boolean).join(', '),
+    phone: getVal('bizPhone'),
+    email: getVal('bizEmail'),
+    website: getVal('bizWebsite'),
+    owners,
+    monthlyRevenue: getVal('finMonthlyRev'),
+    annualRevenue: getVal('finAnnualRev'),
+    monthlyExpenses: getVal('finMonthlyExp'),
+    currentDebt: getVal('finDebt'),
+    hasLoans: getPillVal('finHasLoans'),
+    bankName: getVal('finBankName'),
+    bankAccountAge: getVal('finBankAge'),
+    avgBankBalance: getVal('finBankBalance'),
+    nsfOverdrafts: getPillVal('finNsf'),
+    bankruptcy: getPillVal('finBankruptcy'),
+    creditScoreRange: getVal('finCreditScore'),
+    fundingAmount: getVal('fundAmount'),
+    useOfFunds: getPillVal('fundUse'),
+    fundingTimeline: getPillVal('fundTimeline'),
+    appliedElsewhere: getPillVal('fundAppliedElsewhere'),
+    referral: getVal('fundReferral'),
+    fundingDescription: getVal('fundDescription'),
+  };
+}
+
+function showSubmitError(msg) {
+  let errEl = document.getElementById('submitError');
+  if (!errEl) {
+    errEl = document.createElement('div');
+    errEl.id = 'submitError';
+    errEl.style.cssText = 'background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.35);color:#FF6B35;padding:14px 18px;border-radius:10px;font-size:14px;margin-top:16px;line-height:1.5;';
+    document.getElementById('submitBtn').parentElement.insertAdjacentElement('afterend', errEl);
+  }
+  errEl.textContent = msg;
+  errEl.style.display = 'block';
+}
+
+function showConfirmation(appId) {
+  document.getElementById('appId').textContent = appId;
+  // Wire email link with app ID in subject
+  const emailLink = document.getElementById('confirmEmailLink');
+  emailLink.href = 'mailto:Ben@gocarraway.com?subject=Documents%20for%20Application%20' + encodeURIComponent(appId);
   document.getElementById('formCard').style.display = 'none';
   document.getElementById('progressSteps').style.display = 'none';
   document.querySelector('.save-bar').style.display = 'none';
-  const confirm = document.getElementById('confirmScreen');
-  confirm.classList.add('active');
+  document.getElementById('confirmScreen').classList.add('active');
   window.scrollTo({top: 0, behavior:'smooth'});
   localStorage.removeItem('cbg_application');
+}
+
+async function submitApplication() {
+  const btn = document.getElementById('submitBtn');
+  const errEl = document.getElementById('submitError');
+  if (errEl) errEl.style.display = 'none';
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const payload = collectSubmissionPayload();
+
+  try {
+    const res = await fetch('/api/apply', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      showConfirmation(data.applicationId);
+    } else {
+      let errMsg = 'Submission failed. Please try again or contact Ben@gocarraway.com.';
+      try {
+        const data = await res.json();
+        if (data.error) errMsg = data.error;
+      } catch (_) {}
+      showSubmitError(errMsg);
+      btn.disabled = false;
+      btn.textContent = 'Submit Application';
+    }
+  } catch (err) {
+    showSubmitError('Network error — please check your connection and try again.');
+    btn.disabled = false;
+    btn.textContent = 'Submit Application';
+  }
 }
 
 // ── File uploads ──────────────────────────────────────────────────────────────
