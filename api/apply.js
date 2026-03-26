@@ -16,19 +16,35 @@ function formatCurrency(val) {
 
 async function createAirtableRecord(fields) {
   const url = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE)}`;
+  const body = JSON.stringify({ fields });
+
+  console.log('[Airtable] POST', url);
+  console.log('[Airtable] Fields being sent:', JSON.stringify(fields, null, 2));
+  console.log('[Airtable] API key present:', !!process.env.AIRTABLE_API_KEY);
+  console.log('[Airtable] API key prefix:', process.env.AIRTABLE_API_KEY ? process.env.AIRTABLE_API_KEY.slice(0, 8) + '...' : 'MISSING');
+
   const res = await fetch(url, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ fields }),
+    body,
   });
+
+  const responseText = await res.text();
+  console.log('[Airtable] Response status:', res.status, res.statusText);
+  console.log('[Airtable] Response body:', responseText);
+
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Airtable error ${res.status}: ${text}`);
+    throw new Error(`Airtable ${res.status} ${res.statusText}: ${responseText}`);
   }
-  return res.json();
+
+  try {
+    return JSON.parse(responseText);
+  } catch {
+    return responseText;
+  }
 }
 
 async function sendResendEmail(applicationId, payload) {
@@ -185,10 +201,14 @@ export default async function handler(req, res) {
     'Submitted Date': submittedDate,
   };
 
+  console.log('[apply] Submitting to Airtable. Application ID:', applicationId);
+  console.log('[apply] airtableFields:', JSON.stringify(airtableFields, null, 2));
+
   try {
-    await createAirtableRecord(airtableFields);
+    const record = await createAirtableRecord(airtableFields);
+    console.log('[apply] Airtable record created successfully. Record ID:', record.id);
   } catch (err) {
-    console.error('Airtable error:', err.message);
+    console.error('[apply] Airtable failed:', err.message);
     return res.status(500).json({ error: 'Failed to save your application. Please try again or contact Ben@gocarraway.com.' });
   }
 
