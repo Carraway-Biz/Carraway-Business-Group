@@ -192,60 +192,106 @@ export default async function handler(req, res) {
     const fundingAmountRaw  = toInt(payload.fundingAmount);
     const monthlyRevenueRaw = toInt(payload.monthlyRevenue);
 
-    // Time in Business — derive from business start date
-    // Bucket labels must match the exact single-select options in Airtable.
-    // If these don't match, set AIRTABLE_TABLE_ID correctly and check field options.
-    function calcTimeInBusiness(startDateStr) {
-      if (!startDateStr) return '';
+    // ── Single-select mappers ────────────────────────────────────────────────
+    // Each function returns an exact Airtable option string, or undefined if
+    // there is no safe match (undefined fields are stripped before the POST).
+
+    // Allowed: Under 6 months | 6-12 months | 1-2 years | 2-5 years | 5+ years
+    function mapTimeInBusiness(startDateStr) {
+      if (!startDateStr) return undefined;
       const months = (Date.now() - new Date(startDateStr).getTime()) / (1000 * 60 * 60 * 24 * 30.44);
-      if (months < 12)  return 'Less than 1 year';
+      if (months < 6)   return 'Under 6 months';
+      if (months < 12)  return '6-12 months';
       if (months < 24)  return '1-2 years';
       if (months < 60)  return '2-5 years';
       return '5+ years';
     }
 
-    // Use of Funds / Loan Type — form is multi-select, Airtable fields are single-select.
-    // Take the first selected value; omit entirely if empty to avoid INVALID_VALUE errors.
-    const useOfFundsFirst = payload.useOfFunds
-      ? String(payload.useOfFunds).split(',')[0].trim()
-      : '';
+    // Allowed: Working Capital | SBA 7a | Equipment | Line of Credit |
+    //          Acquisition | Revenue-Based | MCA | Other
+    function mapLoanType(formVal) {
+      const MAP = {
+        'Working Capital/Cash Flow':  'Working Capital',
+        'Equipment or Machinery':     'Equipment',
+        'Vehicles':                   'Equipment',
+        'Inventory Purchase':         'Working Capital',
+        'Hiring/Payroll':             'Working Capital',
+        'Marketing/Advertising':      'Working Capital',
+        'Real Estate/Property':       'Other',
+        'Business Expansion':         'Line of Credit',
+        'Refinancing Existing Debt':  'Other',
+        'Business Acquisition':       'Acquisition',
+        'Other':                      'Other',
+      };
+      if (!formVal) return undefined;
+      const first = String(formVal).split(',')[0].trim();
+      return MAP[first] ?? 'Other';
+    }
 
-    // Internal Notes — long text, no type restrictions
+    // Allowed: Working Capital | Equipment | Vehicles | Expansion |
+    //          Refinancing | Acquisition | Other
+    function mapUseOfFunds(formVal) {
+      const MAP = {
+        'Working Capital/Cash Flow':  'Working Capital',
+        'Equipment or Machinery':     'Equipment',
+        'Vehicles':                   'Vehicles',
+        'Inventory Purchase':         'Other',
+        'Hiring/Payroll':             'Working Capital',
+        'Marketing/Advertising':      'Other',
+        'Real Estate/Property':       'Other',
+        'Business Expansion':         'Expansion',
+        'Refinancing Existing Debt':  'Refinancing',
+        'Business Acquisition':       'Acquisition',
+        'Other':                      'Other',
+      };
+      if (!formVal) return undefined;
+      const first = String(formVal).split(',')[0].trim();
+      return MAP[first] ?? 'Other';
+    }
+
+    // Allowed: Below 550 | 550-620 | 620-680 | 680-720 | 720+
+    // Form uses en-dashes (550–620); normalize to hyphens.
+    function mapCreditScore(formVal) {
+      if (!formVal) return undefined;
+      const VALID = new Set(['Below 550', '550-620', '620-680', '680-720', '720+']);
+      const normalized = String(formVal).replace(/\u2013|\u2014/g, '-'); // en/em dash → hyphen
+      return VALID.has(normalized) ? normalized : undefined;
+    }
+
+    // ── Internal Notes (long text — no type restrictions) ────────────────────
     const internalNotes = [
       `Application ID: ${applicationId}`,
-      ownerName  ? `Owner Name: ${ownerName}`   : null,
-      ownerEmail ? `Email: ${ownerEmail}`        : null,
-      ownerPhone ? `Phone: ${ownerPhone}`        : null,
+      ownerName  ? `Owner Name: ${ownerName}`  : null,
+      ownerEmail ? `Email: ${ownerEmail}`      : null,
+      ownerPhone ? `Phone: ${ownerPhone}`      : null,
       payload.owners && payload.owners.length > 1
         ? `Additional owners: ${payload.owners.slice(1)
             .map(o => [o.firstName, o.lastName].filter(Boolean).join(' ')).join(', ')}`
         : null,
     ].filter(Boolean).join('\n');
 
-    // Helper — omit a key entirely if value is empty string/null/undefined,
-    // preventing INVALID_VALUE_FOR_COLUMN on single-select fields.
-    function ifPresent(val) { return (val !== '' && val != null) ? val : undefined; }
-
-    const airtableFields = {
+    // ── Build Airtable payload ───────────────────────────────────────────────
+    // Only include a field if its value is defined — a missing field is always
+    // safer than an invalid single-select value.
+    const rawFields = {
       'Business Name':            payload.businessName || '',
       'Status':                   'New',
       'Funding Amount Requested': fundingAmountRaw,
-      'Loan Type':                ifPresent(useOfFundsFirst),
-      'Time in Business':         ifPresent(calcTimeInBusiness(payload.startDate)),
+      'Loan Type':                mapLoanType(payload.useOfFunds),
+      'Time in Business':         mapTimeInBusiness(payload.startDate),
       'Monthly Revenue':          monthlyRevenueRaw,
-      'Credit Score Range':       ifPresent(payload.creditScoreRange),
-      'Use of Funds':             ifPresent(useOfFundsFirst),
+      'Credit Score Range':       mapCreditScore(payload.creditScoreRange),
+      'Use of Funds':             mapUseOfFunds(payload.useOfFunds),
       'Submitted Date':           submittedDate,
       'Internal Notes':           internalNotes,
     };
 
-    // Strip undefined values before sending
     const cleanFields = Object.fromEntries(
-      Object.entries(airtableFields).filter(([, v]) => v !== undefined)
+      Object.entries(rawFields).filter(([, v]) => v !== undefined && v !== '')
     );
 
     console.log('[apply] Application ID:', applicationId);
-    console.log('[apply] Fields being sent to Airtable:', JSON.stringify(cleanFields, null, 2));
+    console.log('[apply] Exact Airtable payload:', JSON.stringify(cleanFields, null, 2));
 
     try {
       const record = await createAirtableRecord(cleanFields);
