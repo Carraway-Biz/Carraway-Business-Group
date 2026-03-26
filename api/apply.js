@@ -165,40 +165,63 @@ export default async function handler(req, res) {
   const applicationId = generateAppId();
   const submittedDate = new Date().toISOString().split('T')[0];
 
+  // Owner details — folded into Internal Notes since Airtable has no separate owner fields
   const ownerName = payload.owners && payload.owners.length > 0
     ? [payload.owners[0].firstName, payload.owners[0].lastName].filter(Boolean).join(' ')
     : '';
-
   const ownerEmail = payload.owners && payload.owners.length > 0
     ? payload.owners[0].email || ''
     : '';
-
   const ownerPhone = payload.owners && payload.owners.length > 0
     ? payload.owners[0].phone || ''
     : '';
 
-  // Parse funding amount as a number for Airtable (strip $ and commas)
+  // Currency fields — Airtable expects plain numbers
   const fundingAmountRaw = payload.fundingAmount
     ? parseInt(String(payload.fundingAmount).replace(/[^0-9]/g, ''), 10) || 0
     : 0;
-
   const monthlyRevenueRaw = payload.monthlyRevenue
     ? parseInt(String(payload.monthlyRevenue).replace(/[^0-9]/g, ''), 10) || 0
     : 0;
 
+  // Time in Business — derive from start date into Airtable single-select buckets
+  function calcTimeInBusiness(startDateStr) {
+    if (!startDateStr) return '';
+    const months = (new Date() - new Date(startDateStr)) / (1000 * 60 * 60 * 24 * 30.44);
+    if (months < 12) return 'Less than 1 year';
+    if (months < 24) return '1-2 years';
+    if (months < 60) return '2-5 years';
+    return '5+ years';
+  }
+
+  // Use of Funds — multi-select on the form; take first value for single-select field
+  const useOfFundsFirst = payload.useOfFunds
+    ? String(payload.useOfFunds).split(',')[0].trim()
+    : '';
+
+  // Internal Notes — consolidate owner + application ID into the long-text field
+  const internalNotes = [
+    `Application ID: ${applicationId}`,
+    ownerName  ? `Owner Name: ${ownerName}`  : null,
+    ownerEmail ? `Email: ${ownerEmail}`       : null,
+    ownerPhone ? `Phone: ${ownerPhone}`       : null,
+    payload.owners && payload.owners.length > 1
+      ? `Additional owners: ${payload.owners.slice(1).map(o => [o.firstName, o.lastName].filter(Boolean).join(' ')).join(', ')}`
+      : null,
+  ].filter(Boolean).join('\n');
+
+  // Only include fields that exist in the Airtable Applications table
   const airtableFields = {
-    'Application ID': applicationId,
-    'Business Name': payload.businessName || '',
-    'Owner Name': ownerName,
-    'Email': ownerEmail || payload.email || '',
-    'Phone': ownerPhone || payload.phone || '',
-    'Funding Amount': fundingAmountRaw,
-    'Loan Type': payload.useOfFunds || '',
-    'Monthly Revenue': monthlyRevenueRaw,
-    'Credit Score Range': payload.creditScoreRange || '',
-    'Use of Funds': payload.useOfFunds || '',
-    'Status': 'New',
-    'Submitted Date': submittedDate,
+    'Business Name':            payload.businessName || '',
+    'Status':                   'New',
+    'Funding Amount Requested': fundingAmountRaw,
+    'Loan Type':                useOfFundsFirst,
+    'Time in Business':         calcTimeInBusiness(payload.startDate),
+    'Monthly Revenue':          monthlyRevenueRaw,
+    'Credit Score Range':       payload.creditScoreRange || '',
+    'Use of Funds':             useOfFundsFirst,
+    'Submitted Date':           submittedDate,
+    'Internal Notes':           internalNotes,
   };
 
   console.log('[apply] Submitting to Airtable. Application ID:', applicationId);
