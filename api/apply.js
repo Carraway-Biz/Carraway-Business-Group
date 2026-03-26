@@ -1,8 +1,15 @@
 // Vercel serverless function: POST /api/apply
 // Creates an Airtable record and sends a Resend email notification.
+//
+// Required env vars:
+//   AIRTABLE_API_KEY   — Airtable personal access token
+//   AIRTABLE_TABLE_ID  — Table ID from Airtable API docs (e.g. tblXXXXXXXXXXXXXX)
+//                        Go to airtable.com/appf20RCOmCyu8BEx/api/docs → Applications table
+//   RESEND_API_KEY     — Resend API key
 
 const AIRTABLE_BASE_ID = 'appf20RCOmCyu8BEx';
-const AIRTABLE_TABLE = 'Applications'; // referenced by name
+// Prefer the explicit table ID env var; fall back to name only as last resort
+const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE_ID || 'Applications';
 
 function generateAppId() {
   return 'CBG-' + String(Math.floor(100000 + Math.random() * 900000));
@@ -146,101 +153,121 @@ async function sendResendEmail(applicationId, payload) {
 }
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  if (!process.env.AIRTABLE_API_KEY) {
-    console.error('AIRTABLE_API_KEY is not set');
-    return res.status(500).json({ error: 'Server configuration error. Please contact Ben@gocarraway.com.' });
-  }
-
-  let payload;
+  // Outer catch-all — ensures every uncaught error is logged with full stack
   try {
-    payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-  } catch {
-    return res.status(400).json({ error: 'Invalid request body.' });
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    console.log('[apply] Handler invoked');
+    console.log('[apply] AIRTABLE_TABLE resolved to:', AIRTABLE_TABLE);
+    console.log('[apply] AIRTABLE_TABLE_ID env var:', process.env.AIRTABLE_TABLE_ID || '(not set — using name fallback)');
+
+    if (!process.env.AIRTABLE_API_KEY) {
+      console.error('[apply] FATAL: AIRTABLE_API_KEY env var is not set');
+      return res.status(500).json({ error: 'Server configuration error. Please contact Ben@gocarraway.com.' });
+    }
+
+    let payload;
+    try {
+      payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    } catch (parseErr) {
+      console.error('[apply] Body parse error:', parseErr.message);
+      return res.status(400).json({ error: 'Invalid request body.' });
+    }
+
+    console.log('[apply] Payload keys received:', Object.keys(payload || {}));
+
+    const applicationId = generateAppId();
+    const submittedDate = new Date().toISOString().split('T')[0];
+
+    // Owner details — folded into Internal Notes
+    const owner = payload.owners && payload.owners.length > 0 ? payload.owners[0] : {};
+    const ownerName  = [owner.firstName, owner.lastName].filter(Boolean).join(' ');
+    const ownerEmail = owner.email || '';
+    const ownerPhone = owner.phone || '';
+
+    // Currency fields — Airtable expects plain numbers for currency field type
+    const toInt = v => v ? parseInt(String(v).replace(/[^0-9]/g, ''), 10) || 0 : 0;
+    const fundingAmountRaw  = toInt(payload.fundingAmount);
+    const monthlyRevenueRaw = toInt(payload.monthlyRevenue);
+
+    // Time in Business — derive from business start date
+    // Bucket labels must match the exact single-select options in Airtable.
+    // If these don't match, set AIRTABLE_TABLE_ID correctly and check field options.
+    function calcTimeInBusiness(startDateStr) {
+      if (!startDateStr) return '';
+      const months = (Date.now() - new Date(startDateStr).getTime()) / (1000 * 60 * 60 * 24 * 30.44);
+      if (months < 12)  return 'Less than 1 year';
+      if (months < 24)  return '1-2 years';
+      if (months < 60)  return '2-5 years';
+      return '5+ years';
+    }
+
+    // Use of Funds / Loan Type — form is multi-select, Airtable fields are single-select.
+    // Take the first selected value; omit entirely if empty to avoid INVALID_VALUE errors.
+    const useOfFundsFirst = payload.useOfFunds
+      ? String(payload.useOfFunds).split(',')[0].trim()
+      : '';
+
+    // Internal Notes — long text, no type restrictions
+    const internalNotes = [
+      `Application ID: ${applicationId}`,
+      ownerName  ? `Owner Name: ${ownerName}`   : null,
+      ownerEmail ? `Email: ${ownerEmail}`        : null,
+      ownerPhone ? `Phone: ${ownerPhone}`        : null,
+      payload.owners && payload.owners.length > 1
+        ? `Additional owners: ${payload.owners.slice(1)
+            .map(o => [o.firstName, o.lastName].filter(Boolean).join(' ')).join(', ')}`
+        : null,
+    ].filter(Boolean).join('\n');
+
+    // Helper — omit a key entirely if value is empty string/null/undefined,
+    // preventing INVALID_VALUE_FOR_COLUMN on single-select fields.
+    function ifPresent(val) { return (val !== '' && val != null) ? val : undefined; }
+
+    const airtableFields = {
+      'Business Name':            payload.businessName || '',
+      'Status':                   'New',
+      'Funding Amount Requested': fundingAmountRaw,
+      'Loan Type':                ifPresent(useOfFundsFirst),
+      'Time in Business':         ifPresent(calcTimeInBusiness(payload.startDate)),
+      'Monthly Revenue':          monthlyRevenueRaw,
+      'Credit Score Range':       ifPresent(payload.creditScoreRange),
+      'Use of Funds':             ifPresent(useOfFundsFirst),
+      'Submitted Date':           submittedDate,
+      'Internal Notes':           internalNotes,
+    };
+
+    // Strip undefined values before sending
+    const cleanFields = Object.fromEntries(
+      Object.entries(airtableFields).filter(([, v]) => v !== undefined)
+    );
+
+    console.log('[apply] Application ID:', applicationId);
+    console.log('[apply] Fields being sent to Airtable:', JSON.stringify(cleanFields, null, 2));
+
+    try {
+      const record = await createAirtableRecord(cleanFields);
+      console.log('[apply] Airtable record created. Record ID:', record.id);
+    } catch (airtableErr) {
+      console.error('[apply] Airtable error:', airtableErr.message);
+      return res.status(500).json({ error: 'Failed to save your application. Please try again or contact Ben@gocarraway.com.' });
+    }
+
+    // Email notification — failure is logged but does not fail the request
+    try {
+      await sendResendEmail(applicationId, payload);
+    } catch (emailErr) {
+      console.error('[apply] Resend error:', emailErr.message);
+    }
+
+    return res.status(200).json({ applicationId });
+
+  } catch (unexpectedErr) {
+    // Catches anything not handled above — runtime errors, etc.
+    console.error('[apply] UNEXPECTED ERROR:', unexpectedErr.message);
+    console.error('[apply] Stack trace:', unexpectedErr.stack);
+    return res.status(500).json({ error: 'An unexpected error occurred. Please contact Ben@gocarraway.com.' });
   }
-
-  const applicationId = generateAppId();
-  const submittedDate = new Date().toISOString().split('T')[0];
-
-  // Owner details — folded into Internal Notes since Airtable has no separate owner fields
-  const ownerName = payload.owners && payload.owners.length > 0
-    ? [payload.owners[0].firstName, payload.owners[0].lastName].filter(Boolean).join(' ')
-    : '';
-  const ownerEmail = payload.owners && payload.owners.length > 0
-    ? payload.owners[0].email || ''
-    : '';
-  const ownerPhone = payload.owners && payload.owners.length > 0
-    ? payload.owners[0].phone || ''
-    : '';
-
-  // Currency fields — Airtable expects plain numbers
-  const fundingAmountRaw = payload.fundingAmount
-    ? parseInt(String(payload.fundingAmount).replace(/[^0-9]/g, ''), 10) || 0
-    : 0;
-  const monthlyRevenueRaw = payload.monthlyRevenue
-    ? parseInt(String(payload.monthlyRevenue).replace(/[^0-9]/g, ''), 10) || 0
-    : 0;
-
-  // Time in Business — derive from start date into Airtable single-select buckets
-  function calcTimeInBusiness(startDateStr) {
-    if (!startDateStr) return '';
-    const months = (new Date() - new Date(startDateStr)) / (1000 * 60 * 60 * 24 * 30.44);
-    if (months < 12) return 'Less than 1 year';
-    if (months < 24) return '1-2 years';
-    if (months < 60) return '2-5 years';
-    return '5+ years';
-  }
-
-  // Use of Funds — multi-select on the form; take first value for single-select field
-  const useOfFundsFirst = payload.useOfFunds
-    ? String(payload.useOfFunds).split(',')[0].trim()
-    : '';
-
-  // Internal Notes — consolidate owner + application ID into the long-text field
-  const internalNotes = [
-    `Application ID: ${applicationId}`,
-    ownerName  ? `Owner Name: ${ownerName}`  : null,
-    ownerEmail ? `Email: ${ownerEmail}`       : null,
-    ownerPhone ? `Phone: ${ownerPhone}`       : null,
-    payload.owners && payload.owners.length > 1
-      ? `Additional owners: ${payload.owners.slice(1).map(o => [o.firstName, o.lastName].filter(Boolean).join(' ')).join(', ')}`
-      : null,
-  ].filter(Boolean).join('\n');
-
-  // Only include fields that exist in the Airtable Applications table
-  const airtableFields = {
-    'Business Name':            payload.businessName || '',
-    'Status':                   'New',
-    'Funding Amount Requested': fundingAmountRaw,
-    'Loan Type':                useOfFundsFirst,
-    'Time in Business':         calcTimeInBusiness(payload.startDate),
-    'Monthly Revenue':          monthlyRevenueRaw,
-    'Credit Score Range':       payload.creditScoreRange || '',
-    'Use of Funds':             useOfFundsFirst,
-    'Submitted Date':           submittedDate,
-    'Internal Notes':           internalNotes,
-  };
-
-  console.log('[apply] Submitting to Airtable. Application ID:', applicationId);
-  console.log('[apply] airtableFields:', JSON.stringify(airtableFields, null, 2));
-
-  try {
-    const record = await createAirtableRecord(airtableFields);
-    console.log('[apply] Airtable record created successfully. Record ID:', record.id);
-  } catch (err) {
-    console.error('[apply] Airtable failed:', err.message);
-    return res.status(500).json({ error: 'Failed to save your application. Please try again or contact Ben@gocarraway.com.' });
-  }
-
-  // Send email notification (non-blocking failure)
-  try {
-    await sendResendEmail(applicationId, payload);
-  } catch (err) {
-    console.error('Resend error:', err.message);
-  }
-
-  return res.status(200).json({ applicationId });
 }
