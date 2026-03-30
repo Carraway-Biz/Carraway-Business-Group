@@ -179,7 +179,6 @@ export default async function handler(req, res) {
     console.log('[apply] Payload keys received:', Object.keys(payload || {}));
 
     const applicationId = generateAppId();
-    const submittedDate = new Date().toISOString().split('T')[0];
 
     // Owner details — folded into Internal Notes
     const owner = payload.owners && payload.owners.length > 0 ? payload.owners[0] : {};
@@ -282,7 +281,7 @@ export default async function handler(req, res) {
       'Monthly Revenue':          monthlyRevenueRaw,
       'Credit Score Range':       mapCreditScore(payload.creditScoreRange),
       'Use of Funds':             mapUseOfFunds(payload.useOfFunds),
-      'Submitted Date':           submittedDate,
+
       'Internal Notes':           internalNotes,
     };
 
