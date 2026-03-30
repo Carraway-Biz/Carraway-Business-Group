@@ -199,11 +199,11 @@ export default async function handler(req, res) {
     function mapTimeInBusiness(startDateStr) {
       if (!startDateStr) return undefined;
       const months = (Date.now() - new Date(startDateStr).getTime()) / (1000 * 60 * 60 * 24 * 30.44);
-      if (months < 6)   return 'Under 6 months';
-      if (months < 12)  return '6-12 months';
-      if (months < 24)  return '1-2 years';
-      if (months < 60)  return '2-5 years';
-      return '5+ years';
+      if (months < 6)   return 'Under 6 Months';
+      if (months < 12)  return '6-12 Months';
+      if (months < 24)  return '1-2 Years';
+      if (months < 60)  return '2-5 Years';
+      return '5+ Years';
     }
 
     // Allowed: Working Capital | SBA 7a | Equipment | Line of Credit |
