@@ -107,7 +107,7 @@ export default async function handler(req, res) {
           phone:            fields['Phone'],
           business_type:    fields['Business Type'],
           funding_amount:   fields['Funding Amount'],
-          financing_needs:  fields['Financing Needs'],
+          financing_needs:  fields['Message'],
         }),
       });
       console.log('[contact] Make.com webhook fired successfully');
