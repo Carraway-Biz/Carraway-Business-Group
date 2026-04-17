@@ -94,6 +94,27 @@ export default async function handler(req, res) {
     console.log('[contact] Airtable status:', airtableRes.status);
     console.log('[contact] Airtable response:', responseText);
 
+    // Make.com webhook — Lead Response Agent
+    try {
+      await fetch(process.env.MAKE_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          first_name:       fields['First Name'],
+          last_name:        fields['Last Name'],
+          business_name:    fields['Business Name'],
+          email:            fields['Email'],
+          phone:            fields['Phone'],
+          business_type:    fields['Business Type'],
+          funding_amount:   fields['Funding Amount'],
+          financing_needs:  fields['Financing Needs'],
+        }),
+      });
+      console.log('[contact] Make.com webhook fired successfully');
+    } catch (err) {
+      console.error('[contact] Make.com webhook failed:', err.message);
+    }
+
     let responseJson;
     try { responseJson = JSON.parse(responseText); } catch { responseJson = null; }
 
