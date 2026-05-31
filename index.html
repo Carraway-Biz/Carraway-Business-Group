@@ -12,13 +12,13 @@
     /* ─── Reset & Base ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cyan:   #422C1F;
-      --orange: #8B6B5B;
-      --dark:   #000000;
-      --dark2:  #0D0906;
-      --dark3:  #1A1008;
+      --cyan:   #2ABFBF;
+      --orange: #2ABFBF;
+      --dark:   #111111;
+      --dark2:  #1A1A1A;
+      --dark3:  #222222;
       --gray:   #6B7280;
-      --light:  #F9FAFB;
+      --light:  #F5F0E8;
       --white:  #FFFFFF;
       --text:   #E5E7EB;
       --radius: 16px;
@@ -44,18 +44,18 @@
     }
     .section-label::before {
       content: ''; display: block; width: 28px; height: 2px;
-      background: #422C1F; flex-shrink: 0;
+      background: #2ABFBF; flex-shrink: 0;
     }
-    .section-label.orange { color: #422C1F; }
-    .section-label.orange::before { background: #422C1F; }
+    .section-label.orange { color: #2ABFBF; }
+    .section-label.orange::before { background: #2ABFBF; }
     h2.display {
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 900; line-height: 1.1; letter-spacing: -.02em;
     }
-    .cyan  { color: #422C1F; }
-    .orange { color: #422C1F; }
+    .cyan  { color: #2ABFBF; }
+    .orange { color: #2ABFBF; }
     /* On dark hero background, override accent colors */
-    .hero .cyan  { color: #C4956A; }
+    .hero .cyan  { color: #2ABFBF; }
     .hero .orange { color: #FFFFFF; }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -65,17 +65,17 @@
       border: none;
     }
     .btn:hover { transform: translateY(-2px); }
-    .btn-cyan  { background: var(--cyan);   color: var(--white); }
-    .btn-cyan:hover  { box-shadow: 0 8px 24px rgba(66,44,31,.5); }
+    .btn-cyan  { background: #2ABFBF;   color: var(--white); }
+    .btn-cyan:hover  { box-shadow: 0 8px 24px rgba(42,191,191,.4); }
     .btn-orange { background: #000000; color: var(--white); }
     .btn-orange:hover { box-shadow: 0 8px 24px rgba(0,0,0,.45); }
     .btn-outline {
-      background: #FFFFFF; color: #111111;
-      border: 2px solid #111111;
+      background: transparent; color: #FFFFFF;
+      border: 2px solid rgba(255,255,255,.6);
     }
     .btn-outline:hover {
-      background: #F5F5F5; border-color: #111111;
-      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+      border-color: #FFFFFF; background: rgba(255,255,255,.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
     }
     .tag {
       display: inline-block; padding: 4px 12px; border-radius: 20px;
@@ -87,8 +87,8 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       height: 100px;
       display: flex; align-items: center;
-      background: #FFFFFF;
-      border-bottom: 1px solid #E5E7EB;
+      background: #422C1F;
+      border-bottom: none;
       transition: box-shadow .3s;
     }
     nav .container {
@@ -104,17 +104,17 @@
       flex-shrink: 0;
     }
     .nav-logo-text { line-height: 1.2; }
-    .nav-logo-name { font-weight: 800; font-size: 15px; color: #111111; }
-    .nav-logo-sub  { font-size: 10px; font-weight: 600; color: #422C1F; letter-spacing: .1em; text-transform: uppercase; }
+    .nav-logo-name { font-weight: 800; font-size: 15px; color: #FFFFFF; }
+    .nav-logo-sub  { font-size: 10px; font-weight: 600; color: rgba(255,255,255,.65); letter-spacing: .1em; text-transform: uppercase; }
     .nav-links {
       display: flex; align-items: center; gap: 32px;
       list-style: none;
     }
     .nav-links a {
-      font-size: 14px; font-weight: 500; color: #555555;
+      font-size: 14px; font-weight: 500; color: rgba(255,255,255,.8);
       transition: color .2s;
     }
-    .nav-links a:hover { color: #111111; }
+    .nav-links a:hover { color: #FFFFFF; }
     .nav-cta { display: flex; align-items: center; gap: 12px; }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
@@ -122,27 +122,27 @@
     }
     .hamburger span {
       display: block; width: 24px; height: 2px;
-      background: #111111; border-radius: 2px; transition: .3s;
+      background: #FFFFFF; border-radius: 2px; transition: .3s;
     }
     .mobile-menu {
       display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
-      background: #FFFFFF; padding: 24px;
-      border-bottom: 1px solid #E5E7EB;
+      background: #422C1F; padding: 24px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
       z-index: 999;
     }
     .mobile-menu.open { display: block; }
     .mobile-menu a {
       display: block; padding: 14px 0;
       font-size: 16px; font-weight: 500;
-      border-bottom: 1px solid #F0EEEC;
-      color: #111111;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.9);
     }
     .mobile-menu .btn { margin-top: 20px; width: 100%; justify-content: center; }
 
     /* ─── Hero ──────────────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
-      background: #1a1a1a;
+      background: #422C1F;
       display: flex; align-items: center;
       padding: calc(var(--nav-h) + 60px) 0 80px;
       position: relative; overflow: hidden;
@@ -160,11 +160,11 @@
     .hero-eyebrow {
       display: flex; align-items: center; gap: 10px;
       font-size: 11px; font-weight: 700; letter-spacing: .18em;
-      text-transform: uppercase; color: #C4956A; margin-bottom: 28px;
+      text-transform: uppercase; color: #2ABFBF; margin-bottom: 28px;
     }
     .hero-eyebrow::before {
       content: ''; display: block; width: 28px; height: 2px;
-      background: #C4956A;
+      background: #2ABFBF;
     }
     .hero h1 {
       font-size: clamp(3rem, 6vw, 5rem);
@@ -172,13 +172,13 @@
       margin-bottom: 28px; color: #FFFFFF;
     }
     .hero-desc {
-      font-size: 17px; color: rgba(255,255,255,.65);
+      font-size: 17px; color: #F5F0E8;
       max-width: 420px; margin-bottom: 40px; line-height: 1.7;
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
     .hero-card {
-      background: rgba(30,15,8,.8);
-      border: 1px solid rgba(66,44,31,.35);
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(42,191,191,.2);
       border-radius: var(--radius);
       padding: 28px; backdrop-filter: blur(12px);
       position: relative;
@@ -219,12 +219,12 @@
     .hero-icon {
       display: inline-flex; align-items: center; justify-content: center;
       width: 42px; height: 42px; border-radius: 10px;
-      background: rgba(66,44,31,.25); margin-bottom: 16px;
+      background: rgba(42,191,191,.15); margin-bottom: 16px;
     }
 
     /* ─── Trust Bar ─────────────────────────────────────────────────── */
     .trust-bar {
-      background: #422C1F;
+      background: #111111;
     }
     .trust-bar .container {
       display: flex; align-items: stretch;
@@ -232,31 +232,31 @@
     .trust-metric {
       flex: 1; padding: 28px 24px;
       display: flex; align-items: center; gap: 16px;
-      border-right: 1px solid rgba(255,255,255,.15);
+      border-right: 1px solid rgba(255,255,255,.1);
     }
     .trust-metric:last-child { border-right: none; }
     .trust-num {
       font-size: 2rem; font-weight: 900; color: #FFFFFF;
       line-height: 1; white-space: nowrap;
     }
-    .trust-desc { font-size: 13px; color: rgba(255,255,255,.8); line-height: 1.4; }
+    .trust-desc { font-size: 13px; color: #2ABFBF; line-height: 1.4; font-weight: 600; }
 
     /* ─── Difference ────────────────────────────────────────────────── */
     .difference {
       padding: 100px 0;
-      background: var(--white); color: var(--dark);
+      background: #F5F0E8; color: #111111;
     }
     .difference .section-label { color: var(--cyan); }
     .difference .section-label::before { background: var(--orange); }
     .diff-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 2px; margin-top: 60px;
-      border: 2px solid #E5E7EB; border-radius: var(--radius);
+      border: 2px solid rgba(42,191,191,.2); border-radius: var(--radius);
       overflow: hidden;
     }
     .diff-card {
       padding: 36px 28px;
-      background: var(--white);
+      background: #FFFFFF;
       position: relative;
       transition: background .2s;
     }
@@ -267,14 +267,14 @@
     .diff-card:nth-child(1)::before { background: var(--cyan); }
     .diff-card:nth-child(2)::before { background: var(--cyan); }
     .diff-card:nth-child(3)::before { background: var(--cyan); }
-    .diff-card:hover { background: #F9FAFB; }
+    .diff-card:hover { background: #EEE9DF; }
     .diff-icon {
       width: 48px; height: 48px; border-radius: 12px;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 16px; font-size: 22px;
     }
-    .diff-icon.orange { background: rgba(66,44,31,.1); }
-    .diff-icon.cyan   { background: rgba(66,44,31,.1); }
+    .diff-icon.orange { background: rgba(42,191,191,.12); }
+    .diff-icon.cyan   { background: rgba(42,191,191,.12); }
     .diff-tag {
       font-size: 10px; font-weight: 700; letter-spacing: .14em;
       text-transform: uppercase; color: var(--gray);
@@ -286,7 +286,7 @@
     /* ─── Process ───────────────────────────────────────────────────── */
     .process {
       padding: 100px 0;
-      background: #F8F7F5; color: #111111;
+      background: #FFFFFF; color: #111111;
     }
     .process-header {
       text-align: right; margin-bottom: 70px;
@@ -306,7 +306,7 @@
     .process-steps::after {
       content: ''; position: absolute;
       top: 30px; left: calc(16.67% + 16px); right: calc(16.67% + 16px);
-      height: 2px; background: linear-gradient(90deg, var(--cyan), rgba(66,44,31,.2));
+      height: 2px; background: linear-gradient(90deg, #2ABFBF, rgba(42,191,191,.15));
       z-index: 0;
     }
     .step { padding: 0 20px; }
@@ -332,7 +332,7 @@
     /* ─── Tools ─────────────────────────────────────────────────────── */
     .tools {
       padding: 100px 0;
-      background: var(--white); color: var(--dark);
+      background: #F5F0E8; color: #111111;
     }
     .tools-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -342,27 +342,27 @@
       border-radius: var(--radius); padding: 36px; position: relative; overflow: hidden;
     }
     .tool-card.dark {
-      background: #F8F7F5; color: #111111;
-      border: 2px solid rgba(66,44,31,.15);
+      background: #FFFFFF; color: #111111;
+      border: 2px solid rgba(42,191,191,.2);
     }
     .tool-card.light {
-      background: #FBF8F6;
-      border: 2px solid rgba(66,44,31,.15);
+      background: #FFFFFF;
+      border: 2px solid rgba(42,191,191,.2);
       color: #111111;
     }
     .tool-card-tag {
       font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
       margin-bottom: 20px;
     }
-    .tool-card.dark .tool-card-tag { color: #422C1F; }
-    .tool-card.light .tool-card-tag { color: #422C1F; }
+    .tool-card.dark .tool-card-tag { color: #2ABFBF; }
+    .tool-card.light .tool-card-tag { color: #2ABFBF; }
     .tool-icon {
       width: 52px; height: 52px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
       font-size: 24px; margin-bottom: 20px;
     }
-    .tool-card.dark .tool-icon  { background: rgba(66,44,31,.15); }
-    .tool-card.light .tool-icon { background: rgba(66,44,31,.1); }
+    .tool-card.dark .tool-icon  { background: rgba(42,191,191,.12); }
+    .tool-card.light .tool-icon { background: rgba(42,191,191,.12); }
     .tool-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
     .tool-card p  { font-size: 14px; line-height: 1.7; margin-bottom: 28px; }
     .tool-card.dark p { color: #444444; }
@@ -380,7 +380,7 @@
       font-size: 13px; font-weight: 600; margin-bottom: 8px;
       color: #444444;
     }
-    .calc-row label span { color: #422C1F; font-weight: 700; }
+    .calc-row label span { color: #2ABFBF; font-weight: 700; }
     input[type=range] {
       width: 100%; -webkit-appearance: none;
       height: 4px; border-radius: 2px;
@@ -388,18 +388,18 @@
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none; width: 18px; height: 18px;
-      border-radius: 50%; background: #422C1F; cursor: pointer;
-      box-shadow: 0 0 0 4px rgba(66,44,31,.2);
+      border-radius: 50%; background: #2ABFBF; cursor: pointer;
+      box-shadow: 0 0 0 4px rgba(42,191,191,.2);
     }
     .calc-results {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 12px; margin-top: 20px;
     }
     .calc-result {
-      background: #F8F7F5; border-radius: 10px;
+      background: #F5F0E8; border-radius: 10px;
       padding: 14px; text-align: center;
     }
-    .calc-result-val { font-size: 20px; font-weight: 800; color: #422C1F; }
+    .calc-result-val { font-size: 20px; font-weight: 800; color: #2ABFBF; }
     .calc-result-label { font-size: 11px; color: #6B7280; margin-top: 2px; }
 
     /* ─── Pre-Qual Quiz ──────────────────────────────────────────────── */
@@ -456,7 +456,7 @@
     /* ─── Trust Section ──────────────────────────────────────────────── */
     .trust-section {
       padding: 80px 0;
-      background: #F8F7F5;
+      background: #FFFFFF;
     }
     .trust-section h2 { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 48px; color: #111111; }
     .trust-badges {
@@ -465,7 +465,7 @@
     }
     .trust-badge-card { flex: 0 1 240px; }
     .trust-badge-card {
-      background: #FFFFFF; border: 1px solid #E5E7EB;
+      background: #F5F0E8; border: 1px solid rgba(42,191,191,.15);
       border-radius: 14px; padding: 28px 20px; text-align: center;
     }
     .trust-badge-icon { font-size: 36px; margin-bottom: 14px; }
@@ -475,7 +475,7 @@
     /* ─── Contact ────────────────────────────────────────────────────── */
     .contact {
       padding: 100px 0;
-      background: #FFFFFF;
+      background: #F5F0E8;
     }
     .contact-inner {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -487,16 +487,16 @@
     .contact-item { display: flex; align-items: center; gap: 14px; }
     .contact-item-icon {
       width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-      background: rgba(66,44,31,.1);
+      background: rgba(42,191,191,.12);
       display: flex; align-items: center; justify-content: center; font-size: 18px;
     }
     .contact-item-text label { font-size: 11px; color: #6B7280; text-transform: uppercase; letter-spacing: .1em; }
     .contact-item-text a, .contact-item-text span {
       display: block; font-size: 15px; font-weight: 600; color: #111111;
     }
-    .contact-item-text a:hover { color: #422C1F; }
+    .contact-item-text a:hover { color: #2ABFBF; }
     .form-card {
-      background: #F8F7F5; border: 1px solid #E5E7EB;
+      background: #FFFFFF; border: 1px solid rgba(42,191,191,.2);
       border-radius: 20px; padding: 36px;
     }
     .form-title { font-size: 20px; font-weight: 800; margin-bottom: 24px; color: #111111; }
@@ -515,7 +515,7 @@
     }
     .form-group input::placeholder, .form-group textarea::placeholder { color: #9CA3AF; }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: #422C1F;
+      border-color: #2ABFBF;
     }
     .form-group select { appearance: none; cursor: pointer; }
     .form-group select option { background: #FFFFFF; color: #111111; }
@@ -525,7 +525,7 @@
     .form-success {
       display: none; text-align: center; padding: 20px 0;
     }
-    .form-success h3 { font-size: 20px; font-weight: 800; color: #422C1F; margin-bottom: 8px; }
+    .form-success h3 { font-size: 20px; font-weight: 800; color: #2ABFBF; margin-bottom: 8px; }
     .form-success p { color: #444444; font-size: 14px; }
 
     /* ─── Footer ─────────────────────────────────────────────────────── */
@@ -541,14 +541,14 @@
     .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; margin: 14px 0 20px; max-width: 260px; }
     .footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-bottom: 16px; }
     .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.6); margin-bottom: 10px; transition: color .2s; }
-    .footer-col a:hover { color: var(--white); }
+    .footer-col a:hover { color: #2ABFBF; }
     .footer-bottom {
       display: flex; justify-content: space-between; align-items: center;
       padding-top: 28px; border-top: 1px solid rgba(255,255,255,.06);
       font-size: 13px; color: var(--gray);
     }
     .footer-bottom a { color: var(--gray); }
-    .footer-bottom a:hover { color: var(--white); }
+    .footer-bottom a:hover { color: #2ABFBF; }
 
     /* ─── Scroll Animations ──────────────────────────────────────────── */
     .fade-up {
@@ -594,7 +594,7 @@
 <!-- ─── Navigation ─────────────────────────────────────────────────── -->
 <nav id="navbar">
   <div class="container">
-    <a href="#home"><img src="Carraway Brown Logo- .png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;"></a>
+    <a href="#home"><img src="public/Carraway.png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;"></a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="tools.html">Tools</a></li>
@@ -648,7 +648,7 @@
       <div class="hero-card-wrap">
         <div class="hero-card">
           <div class="hero-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
           </div>
           <div class="hero-card-label">Status</div>
           <div class="hero-card-title">Pre-Qualification</div>
@@ -707,19 +707,19 @@
     </div>
     <div class="diff-grid fade-up">
       <div class="diff-card">
-        <div class="diff-icon orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 010 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.72-.72a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div class="diff-icon orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 010 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.72-.72a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
         <div class="diff-tag">No Ghosting</div>
         <h3>Tired of Getting Ghosted?</h3>
         <p>You've shared sensitive financial documents, then… crickets. At Carraway, you work directly with founder Ben from start to finish. No handoffs. No silence. We respond within 24 hours — guaranteed.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon cyan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="diff-icon cyan"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <div class="diff-tag">Full Transparency</div>
         <h3>Sick of Bait-and-Switch?</h3>
         <p>Promised an SBA loan but got pushed into an expensive MCA? We show you the real costs upfront with our Truth in Lending Calculator. No surprises, no pressure — just clear options you can actually compare.</p>
       </div>
       <div class="diff-card">
-        <div class="diff-icon orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="diff-icon orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="diff-tag">Data Privacy</div>
         <h3>Want Your Privacy Protected?</h3>
         <p>We never sell your information to third parties. Your data stays between you, me, and the lenders you choose to work with. Period. You control where your application goes.</p>
@@ -741,7 +741,7 @@
     <div class="process-steps fade-up">
       <div class="step">
         <div class="step-num-wrap">
-          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
           <div class="step-num">01</div>
         </div>
         <h3>Tell Us About Your Business</h3>
@@ -749,7 +749,7 @@
       </div>
       <div class="step">
         <div class="step-num-wrap">
-          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
           <div class="step-num">02</div>
         </div>
         <h3>We Shop for Your Best Rate</h3>
@@ -757,7 +757,7 @@
       </div>
       <div class="step">
         <div class="step-num-wrap">
-          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="step-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <div class="step-num">03</div>
         </div>
         <h3>You Choose with Confidence</h3>
@@ -829,22 +829,22 @@
     <h2 class="fade-up">Why Businesses Trust Carraway</h2>
     <div class="trust-badges fade-up">
       <div class="trust-badge-card">
-        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
         <div class="trust-badge-title">Data Privacy First</div>
         <div class="trust-badge-desc">Your information is never sold. You control where your application goes.</div>
       </div>
       <div class="trust-badge-card">
-        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg></div>
+        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg></div>
         <div class="trust-badge-title">Direct Broker Access</div>
         <div class="trust-badge-desc">Work directly with Ben, start to finish. No handoffs. No middlemen.</div>
       </div>
       <div class="trust-badge-card">
-        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
         <div class="trust-badge-title">Nationwide Service</div>
         <div class="trust-badge-desc">Based in Arizona, serving businesses across all 50 states.</div>
       </div>
       <div class="trust-badge-card">
-        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-3 9 3"/><path d="M3 9l3 9h6"/><path d="M21 9l-3 9h-6"/></svg></div>
+        <div class="trust-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-3 9 3"/><path d="M3 9l3 9h6"/><path d="M21 9l-3 9h-6"/></svg></div>
         <div class="trust-badge-title">Integrity & Compliance</div>
         <div class="trust-badge-desc">Built on honesty, integrity, and full transparency at every step of the process.</div>
       </div>
@@ -865,21 +865,21 @@
         </p>
         <div class="contact-items">
           <div class="contact-item">
-            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div class="contact-item-text">
               <label>Email</label>
               <a href="mailto:ben@gocarraway.com">ben@gocarraway.com</a>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
             <div class="contact-item-text">
               <label>Location</label>
               <span>Arizona · Serving Clients Nationwide</span>
             </div>
           </div>
           <div class="contact-item">
-            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="contact-item-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="contact-item-text">
               <label>Response Time</label>
               <span>Within 24 hours — guaranteed</span>
@@ -945,7 +945,7 @@
           <p class="form-note" style="display:flex;align-items:center;gap:6px;justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Your info is never sold or shared without your consent.</p>
         </form>
         <div class="form-success" id="formSuccess">
-          <div style="margin-bottom:16px"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#422C1F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
+          <div style="margin-bottom:16px"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg></div>
           <h3>Message Received!</h3>
           <p>Ben will reach out within 24 hours. Thank you for choosing Carraway Capital.</p>
         </div>
@@ -960,7 +960,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-logo" style="margin-bottom:4px">
-          <img src="Carraway Brown Logo- .png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;">
+          <img src="public/Carraway.png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;">
         </a>
         <p>Business financing built on relationships, not commissions. Transparent. Personal. Zero ghosting.</p>
       </div>
@@ -1130,7 +1130,7 @@
 
     content.innerHTML = `
       <div class="quiz-result">
-        <div style="margin-bottom:16px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></div>
+        <div style="margin-bottom:16px"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></div>
         <h3>You likely qualify for ${unique.length} financing options!</h3>
         <p>Based on your answers, here are the loan types that may fit your situation. Schedule a free call to get exact numbers with no credit pull.</p>
         <div class="result-badges">
