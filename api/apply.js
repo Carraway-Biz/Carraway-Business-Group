@@ -60,7 +60,7 @@ async function sendResendEmail(applicationId, payload) {
     : '—';
 
   const ownersHtml = (payload.owners || []).map((o, i) => `
-    <tr><td colspan="2" style="padding:12px 0 4px;font-weight:700;color:#00BFFF">Owner ${i + 1}</td></tr>
+    <tr><td colspan="2" style="padding:12px 0 4px;font-weight:700;color:#422C1F">Owner ${i + 1}</td></tr>
     <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Name</td><td>${[o.firstName, o.mi, o.lastName].filter(Boolean).join(' ')}</td></tr>
     <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Email</td><td>${o.email || '—'}</td></tr>
     <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Phone</td><td>${o.phone || '—'}</td></tr>
@@ -81,7 +81,7 @@ async function sendResendEmail(applicationId, payload) {
 
       <div style="background:rgba(0,191,255,.08);border:2px solid rgba(0,191,255,.3);border-radius:10px;padding:14px 20px;margin-bottom:24px;text-align:center">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6B7280;margin-bottom:4px">Application ID</div>
-        <div style="font-size:22px;font-weight:900;color:#00BFFF;letter-spacing:.08em">${applicationId}</div>
+        <div style="font-size:22px;font-weight:900;color:#422C1F;letter-spacing:.08em">${applicationId}</div>
       </div>
 
       <table style="width:100%;border-collapse:collapse;font-size:14px">
@@ -114,7 +114,7 @@ async function sendResendEmail(applicationId, payload) {
         <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Credit Score</td><td>${payload.creditScoreRange || '—'}</td></tr>
 
         <tr><td colspan="2" style="padding:16px 0 8px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:#6B7280;border-bottom:1px solid rgba(255,255,255,.08)">Funding Request</td></tr>
-        <tr><td style="color:#9CA3AF;padding:8px 16px 4px 0">Funding Amount</td><td style="font-weight:700;color:#00BFFF;font-size:16px">${formatCurrency(payload.fundingAmount)}</td></tr>
+        <tr><td style="color:#9CA3AF;padding:8px 16px 4px 0">Funding Amount</td><td style="font-weight:700;color:#422C1F;font-size:16px">${formatCurrency(payload.fundingAmount)}</td></tr>
         <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Use of Funds</td><td>${payload.useOfFunds || '—'}</td></tr>
         <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Loan Type</td><td>${payload.useOfFunds || '—'}</td></tr>
         <tr><td style="color:#9CA3AF;padding:4px 16px 4px 0">Timeline</td><td>${payload.fundingTimeline || '—'}</td></tr>
@@ -124,7 +124,7 @@ async function sendResendEmail(applicationId, payload) {
       </table>
 
       <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);text-align:center">
-        <p style="color:#6B7280;font-size:12px;margin:0">Submitted ${new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' })} MST · Carraway Business Group</p>
+        <p style="color:#6B7280;font-size:12px;margin:0">Submitted ${new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' })} MST · Carraway Capital</p>
       </div>
     </div>
   </div>
