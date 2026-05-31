@@ -196,7 +196,7 @@ function buildEmailHtml({ firstName, lastName, businessName, email, phone, busin
         <!-- Header -->
         <tr>
           <td style="background:linear-gradient(135deg,#0A0F1A,#0d1a30);padding:32px 36px;">
-            <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#00BFFF;">Carraway Business Group</p>
+            <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#422C1F;">Carraway Capital</p>
             <h1 style="margin:8px 0 0;font-size:22px;font-weight:800;color:#ffffff;line-height:1.3;">New Form Submission</h1>
           </td>
         </tr>
@@ -217,8 +217,8 @@ function buildEmailHtml({ firstName, lastName, businessName, email, phone, busin
               ${row('First Name',      firstName)}
               ${row('Last Name',       lastName)}
               ${row('Business Name',   businessName)}
-              ${row('Email',           `<a href="mailto:${email}" style="color:#00BFFF;text-decoration:none;">${email}</a>`)}
-              ${row('Phone',           phone ? `<a href="tel:${phone}" style="color:#00BFFF;text-decoration:none;">${phone}</a>` : '')}
+              ${row('Email',           `<a href="mailto:${email}" style="color:#422C1F;text-decoration:none;">${email}</a>`)}
+              ${row('Phone',           phone ? `<a href="tel:${phone}" style="color:#422C1F;text-decoration:none;">${phone}</a>` : '')}
               ${row('Business Type',   businessType)}
               ${row('Funding Amount',  fundingAmount)}
               ${row('Message',         message ? `<span style="white-space:pre-wrap;">${message}</span>` : '')}
@@ -229,8 +229,8 @@ function buildEmailHtml({ firstName, lastName, businessName, email, phone, busin
         <!-- CTA -->
         <tr>
           <td style="padding:24px 36px 36px;">
-            <a href="mailto:${email}?subject=Re: Your Carraway Business Group Inquiry"
-               style="display:inline-block;background:#00BFFF;color:#0A0F1A;font-size:14px;font-weight:800;
+            <a href="mailto:${email}?subject=Re: Your Carraway Capital Inquiry"
+               style="display:inline-block;background:#422C1F;color:#0A0F1A;font-size:14px;font-weight:800;
                       padding:14px 28px;border-radius:50px;text-decoration:none;">
               Reply to ${firstName} →
             </a>
@@ -241,7 +241,7 @@ function buildEmailHtml({ firstName, lastName, businessName, email, phone, busin
         <tr>
           <td style="background:#F9FAFB;padding:20px 36px;border-top:1px solid #E5E7EB;">
             <p style="margin:0;font-size:12px;color:#9CA3AF;">
-              Submitted via carrawaygroup.com · Carraway Business Group · Arizona
+              Submitted via carrawaygroup.com · Carraway Capital · Arizona
             </p>
           </td>
         </tr>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free Business Financing Tools | Carraway Business Group</title>
+  <title>Free Business Financing Tools | Carraway Capital</title>
   <meta name="description" content="Free pre-qualification quiz and truth-in-lending calculator. No signup, no credit pull, no strings — just honest answers to help you decide with confidence." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,11 +12,11 @@
     /* ─── Reset & Base ─────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cyan:   #00BFFF;
-      --orange: #FF6B35;
-      --dark:   #0A0F1A;
-      --dark2:  #111827;
-      --dark3:  #1a2235;
+      --cyan:   #422C1F;
+      --orange: #8B6B5B;
+      --dark:   #000000;
+      --dark2:  #0D0906;
+      --dark3:  #1A1008;
       --gray:   #6B7280;
       --light:  #F9FAFB;
       --white:  #FFFFFF;
@@ -59,10 +59,10 @@
       border: none; font-family: inherit;
     }
     .btn:hover { transform: translateY(-2px); }
-    .btn-cyan   { background: var(--cyan); color: var(--dark); }
-    .btn-cyan:hover  { box-shadow: 0 8px 24px rgba(0,191,255,.35); }
+    .btn-cyan   { background: var(--cyan); color: var(--white); }
+    .btn-cyan:hover  { box-shadow: 0 8px 24px rgba(66,44,31,.35); }
     .btn-orange { background: var(--orange); color: var(--white); }
-    .btn-orange:hover { box-shadow: 0 8px 24px rgba(255,107,53,.35); }
+    .btn-orange:hover { box-shadow: 0 8px 24px rgba(0,0,0,.35); }
     .btn-outline {
       background: transparent; color: var(--white);
       border: 2px solid rgba(255,255,255,.3);
@@ -74,7 +74,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       height: var(--nav-h);
       display: flex; align-items: center;
-      background: rgba(10,15,26,.97);
+      background: rgba(0,0,0,.97);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,.06);
       transition: background .3s;
@@ -105,14 +105,14 @@
     .hero {
       padding: calc(var(--nav-h) + 80px) 0 80px;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,100,180,.22) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(255,107,53,.12) 0%, transparent 60%),
-        linear-gradient(160deg, #0A0F1A 0%, #0d1526 50%, #0A0F1A 100%);
+        radial-gradient(ellipse 70% 50% at 50% 50%, rgba(66,44,31,.15) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0,0,0,.12) 0%, transparent 60%),
+        linear-gradient(160deg, #000000 0%, #0B0703 50%, #000000 100%);
       text-align: center; position: relative; overflow: hidden;
     }
     .hero::after {
       content: ''; position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300BFFF' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23422C1F' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
     }
     .hero-inner { position: relative; z-index: 1; }
@@ -136,10 +136,10 @@
     .hero-pill {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 8px 16px; border-radius: 20px;
-      background: rgba(0,191,255,.1); border: 1px solid rgba(0,191,255,.2);
+      background: rgba(66,44,31,.1); border: 1px solid rgba(66,44,31,.2);
       font-size: 13px; font-weight: 600; color: var(--cyan);
     }
-    .hero-pill.orange { background: rgba(255,107,53,.1); border-color: rgba(255,107,53,.2); color: var(--orange); }
+    .hero-pill.orange { background: rgba(0,0,0,.1); border-color: rgba(0,0,0,.2); color: var(--orange); }
 
     /* ─── Tool Tabs ─────────────────────────────────────────────────── */
     .tool-tabs {
@@ -189,7 +189,7 @@
       transition: border-color .18s, background .18s, transform .15s;
       font-family: inherit;
     }
-    .quiz-opt:hover { border-color: var(--cyan); background: rgba(0,191,255,.07); transform: translateX(4px); }
+    .quiz-opt:hover { border-color: var(--cyan); background: rgba(66,44,31,.07); transform: translateX(4px); }
 
     /* Quiz results */
     .quiz-results { text-align: center; }
@@ -207,9 +207,9 @@
     .loan-name { font-size: 17px; font-weight: 800; }
     .loan-rate {
       font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px;
-      background: rgba(0,191,255,.15); color: var(--cyan);
+      background: rgba(66,44,31,.15); color: var(--cyan);
     }
-    .loan-rate.alt { background: rgba(255,107,53,.15); color: var(--orange); }
+    .loan-rate.alt { background: rgba(0,0,0,.15); color: var(--orange); }
     .loan-desc { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.6; margin-bottom: 12px; }
     .loan-tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .loan-tag {
@@ -245,7 +245,7 @@
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none; width: 20px; height: 20px;
       border-radius: 50%; background: var(--cyan); cursor: pointer;
-      box-shadow: 0 0 0 4px rgba(0,191,255,.2);
+      box-shadow: 0 0 0 4px rgba(66,44,31,.2);
     }
     input[type=range]::-moz-range-thumb {
       width: 20px; height: 20px; border: none;
@@ -272,7 +272,7 @@
       background: rgba(255,255,255,.04); border-radius: 12px;
       padding: 16px; text-align: center;
     }
-    .res-item.hero-item { grid-column: span 2; background: rgba(0,191,255,.08); border: 1px solid rgba(0,191,255,.2); }
+    .res-item.hero-item { grid-column: span 2; background: rgba(66,44,31,.08); border: 1px solid rgba(66,44,31,.2); }
     .res-val { font-size: 20px; font-weight: 900; color: var(--cyan); }
     .res-item.hero-item .res-val { font-size: 28px; }
     .res-val.orange { color: var(--orange); }
@@ -306,7 +306,7 @@
     .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
     /* ─── Footer ─────────────────────────────────────────────────────── */
-    footer { background: #060a12; border-top: 1px solid rgba(255,255,255,.06); padding: 60px 0 32px; }
+    footer { background: #422C1F; border-top: 1px solid rgba(255,255,255,.06); padding: 60px 0 32px; }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; margin: 14px 0 20px; max-width: 260px; }
     .footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-bottom: 16px; }
@@ -351,7 +351,7 @@
 <!-- ─── Navigation ─────────────────────────────────────────────────── -->
 <nav id="navbar">
   <div class="container">
-    <a href="index.html"><img src="Carraway.png" alt="Carraway Business Group" style="height:160px !important;width:auto !important;display:block;"></a>
+    <a href="index.html"><img src="Carraway Brown Logo- .png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;"></a>
     <ul class="nav-links">
       <li><a href="index.html#home">Home</a></li>
       <li><a href="tools.html" class="active">Tools</a></li>
@@ -379,7 +379,7 @@
 <!-- ─── Hero ───────────────────────────────────────────────────────── -->
 <section class="hero">
   <div class="hero-inner container">
-    <div class="hero-eyebrow">Carraway Business Group</div>
+    <div class="hero-eyebrow">Carraway Capital</div>
     <h1>
       Free Business <span style="color:var(--cyan)">Financing</span><br>
       <span style="color:var(--orange)">Tools</span>
@@ -400,8 +400,8 @@
 <!-- ─── Tool Tabs ─────────────────────────────────────────────────── -->
 <div class="tool-tabs">
   <div class="container">
-    <button class="tab-btn active" id="tab-quiz" onclick="showTab('quiz')">📋&nbsp; Pre-Qualification Quiz</button>
-    <button class="tab-btn" id="tab-calc" onclick="showTab('calc')">🧮&nbsp; Truth in Lending Calculator</button>
+    <button class="tab-btn active" id="tab-quiz" onclick="showTab('quiz')">Pre-Qualification Quiz</button>
+    <button class="tab-btn" id="tab-calc" onclick="showTab('calc')">Truth in Lending Calculator</button>
   </div>
 </div>
 
@@ -507,12 +507,12 @@
               <circle cx="65" cy="65" r="50" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="22"/>
               <!-- Principal -->
               <circle id="arc-principal" cx="65" cy="65" r="50" fill="none"
-                stroke="#00BFFF" stroke-width="22"
+                stroke="#C4956A" stroke-width="22"
                 stroke-dasharray="314 0" stroke-dashoffset="0"
                 style="transform:rotate(-90deg);transform-origin:65px 65px;transition:stroke-dasharray .5s ease,stroke-dashoffset .5s ease;"/>
               <!-- Interest -->
               <circle id="arc-interest" cx="65" cy="65" r="50" fill="none"
-                stroke="#FF6B35" stroke-width="22"
+                stroke="#8B6B5B" stroke-width="22"
                 stroke-dasharray="0 314" stroke-dashoffset="0"
                 style="transform:rotate(-90deg);transform-origin:65px 65px;transition:stroke-dasharray .5s ease,stroke-dashoffset .5s ease;"/>
               <!-- Fees -->
@@ -523,12 +523,12 @@
             </svg>
             <div class="donut-legend">
               <div class="legend-row">
-                <div class="legend-dot" style="background:var(--cyan);"></div>
-                <span>Principal&nbsp;—&nbsp;<span id="lgPrincipal" style="color:var(--cyan);font-weight:700;">$50,000</span></span>
+                <div class="legend-dot" style="background:#C4956A;"></div>
+                <span>Principal&nbsp;—&nbsp;<span id="lgPrincipal" style="color:#C4956A;font-weight:700;">$50,000</span></span>
               </div>
               <div class="legend-row">
-                <div class="legend-dot" style="background:var(--orange);"></div>
-                <span>Interest&nbsp;—&nbsp;<span id="lgInterest" style="color:var(--orange);font-weight:700;">$2,596</span></span>
+                <div class="legend-dot" style="background:#8B6B5B;"></div>
+                <span>Interest&nbsp;—&nbsp;<span id="lgInterest" style="color:#8B6B5B;font-weight:700;">$2,596</span></span>
               </div>
               <div class="legend-row">
                 <div class="legend-dot" style="background:var(--gray);"></div>
@@ -576,7 +576,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html">
-          <img src="Carraway.png" alt="Carraway Business Group" style="height:160px !important;width:auto !important;display:block;">
+          <img src="Carraway Brown Logo- .png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;">
         </a>
         <p>Business financing built on relationships, not commissions. Transparent. Personal. Zero ghosting.</p>
       </div>
@@ -603,7 +603,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Carraway Business Group · Arizona · All Rights Reserved</span>
+      <span>© 2026 Carraway Capital · Arizona · All Rights Reserved</span>
       <span>
         <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="terms.html">Terms of Service</a>
@@ -689,7 +689,7 @@ function renderQuiz() {
 
 function pickAnswer(btn, ans) {
   btn.style.borderColor = 'var(--cyan)';
-  btn.style.background = 'rgba(0,191,255,.12)';
+  btn.style.background = 'rgba(66,44,31,.12)';
   answers[currentQ] = ans;
   currentQ++;
   setTimeout(renderQuiz, 260);
@@ -788,13 +788,13 @@ function showResults() {
   card.innerHTML = `
     <div class="quiz-progress">${pips}</div>
     <div class="quiz-results">
-      <div class="results-icon">🎉</div>
+      <div class="results-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></div>
       <h3>You likely qualify for ${topLoans.length} financing options</h3>
       <p class="results-sub">Based on your answers, here are the loan types that best fit your situation. Schedule a free call to get exact numbers — no credit pull required.</p>
       <div class="loan-cards">${loanHTML}</div>
       <div class="quiz-ctas">
         <a href="index.html#contact" class="btn btn-cyan">Get Pre-Qualified with Ben &nbsp;→</a>
-        <a href="index.html#contact" class="btn btn-outline">📞 Book a Free Call</a>
+        <a href="index.html#contact" class="btn btn-outline">Book a Free Call</a>
       </div>
       <button class="quiz-restart" onclick="restartQuiz()">Start over</button>
     </div>`;
@@ -948,7 +948,7 @@ function renderSchedule(rows, totalPeriods, freqLabel) {
       <td>${r.period}</td>
       <td style="color:var(--cyan);font-weight:600;">${fmt(r.payment)}</td>
       <td>${fmt(r.principal)}</td>
-      <td style="color:rgba(255,107,53,.9);">${fmt(r.interest)}</td>
+      <td style="color:#8B6B5B;">${fmt(r.interest)}</td>
       <td>${fmt(r.balance)}</td>
     </tr>`).join('');
 
@@ -963,7 +963,7 @@ calcUpdate();
 /* ── Nav scroll tint ─────────────────────────────────────────────── */
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').style.background =
-    window.scrollY > 50 ? 'rgba(10,15,26,.99)' : 'rgba(10,15,26,.97)';
+    window.scrollY > 50 ? 'rgba(0,0,0,.99)' : 'rgba(0,0,0,.97)';
 });
 </script>
 </body>

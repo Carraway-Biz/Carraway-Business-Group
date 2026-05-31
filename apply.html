@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apply for Business Financing | Carraway Business Group</title>
-  <meta name="description" content="Apply for business financing with Carraway Business Group. Transparent, personal service. No ghosting." />
+  <title>Apply for Business Financing | Carraway Capital</title>
+  <meta name="description" content="Apply for business financing with Carraway Capital. Transparent, personal service. No ghosting." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cyan:   #00BFFF;
-      --orange: #FF6B35;
-      --dark:   #0A0F1A;
-      --dark2:  #111827;
-      --dark3:  #1a2235;
+      --cyan:   #422C1F;
+      --orange: #8B6B5B;
+      --dark:   #000000;
+      --dark2:  #0D0906;
+      --dark3:  #1A1008;
       --gray:   #6B7280;
       --light:  #F9FAFB;
       --white:  #FFFFFF;
@@ -34,7 +34,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
       height: var(--nav-h);
       display: flex; align-items: center;
-      background: rgba(10,15,26,.97);
+      background: rgba(0,0,0,.97);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
@@ -45,12 +45,12 @@
     .nav-cta { display: flex; align-items: center; gap: 12px; }
     .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; transition: transform .2s, box-shadow .2s, opacity .2s; border: none; text-decoration: none; }
     .btn:hover { transform: translateY(-2px); }
-    .btn-cyan { background: var(--cyan); color: var(--dark); }
-    .btn-cyan:hover { box-shadow: 0 8px 24px rgba(0,191,255,.35); }
+    .btn-cyan { background: var(--cyan); color: var(--white); }
+    .btn-cyan:hover { box-shadow: 0 8px 24px rgba(66,44,31,.35); }
     .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.3); }
     .btn-outline:hover { border-color: var(--white); }
     .btn-orange { background: var(--orange); color: var(--white); }
-    .btn-orange:hover { box-shadow: 0 8px 24px rgba(255,107,53,.35); }
+    .btn-orange:hover { box-shadow: 0 8px 24px rgba(0,0,0,.35); }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
     .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--dark2); padding: 24px; border-bottom: 1px solid rgba(255,255,255,.08); z-index: 999; }
@@ -60,8 +60,8 @@
 
     /* Page header */
     .page-header {
-      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,100,180,.18) 0%, transparent 70%),
-                  linear-gradient(160deg, #0A0F1A 0%, #0d1526 50%, #0A0F1A 100%);
+      background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(66,44,31,.15) 0%, transparent 70%),
+                  linear-gradient(160deg, #000000 0%, #0B0703 50%, #000000 100%);
       padding: calc(var(--nav-h) + 48px) 0 40px;
       text-align: center;
     }
@@ -76,7 +76,7 @@
     .save-bar { display: flex; justify-content: flex-end; margin-bottom: 16px; }
     .btn-save { background: rgba(255,255,255,.06); color: rgba(255,255,255,.6); border: 1px solid rgba(255,255,255,.12); padding: 8px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
     .btn-save:hover { background: rgba(255,255,255,.1); color: var(--white); }
-    .save-toast { position: fixed; bottom: 24px; right: 24px; background: var(--dark3); border: 1px solid rgba(0,191,255,.3); color: var(--cyan); padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 2000; opacity: 0; transform: translateY(10px); transition: all .3s; pointer-events: none; }
+    .save-toast { position: fixed; bottom: 24px; right: 24px; background: var(--dark3); border: 1px solid rgba(66,44,31,.3); color: var(--cyan); padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 2000; opacity: 0; transform: translateY(10px); transition: all .3s; pointer-events: none; }
     .save-toast.show { opacity: 1; transform: translateY(0); }
 
     /* Progress bar */
@@ -84,7 +84,7 @@
     .step-item { display: flex; flex-direction: column; align-items: center; position: relative; flex: 1; }
     .step-circle { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; transition: all .3s; position: relative; z-index: 1; }
     .step-circle.future { background: #1F2937; border: 2px solid #374151; color: #6B7280; }
-    .step-circle.current { background: var(--orange); border: 2px solid var(--orange); color: var(--white); }
+    .step-circle.current { background: var(--cyan); border: 2px solid var(--cyan); color: var(--white); }
     .step-circle.done { background: var(--cyan); border: 2px solid var(--cyan); color: var(--white); }
     .step-circle.done svg { stroke: var(--white); }
     .step-label { font-size: 11px; font-weight: 600; margin-top: 6px; text-align: center; color: var(--gray); white-space: nowrap; }
@@ -119,7 +119,7 @@
     }
     input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, input[type=date]:focus,
     input[type=number]:focus, input[type=url]:focus, select:focus, textarea:focus {
-      border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(0,191,255,.12);
+      border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(66,44,31,.12);
     }
     input::placeholder, textarea::placeholder { color: rgba(255,255,255,.25); }
     select option { background: var(--dark2); color: var(--white); }
@@ -137,13 +137,13 @@
     .pill-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
     .pill-btn { background: transparent; border: 2px solid rgba(255,255,255,.15); border-radius: 50px; padding: 9px 20px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .pill-btn:hover { border-color: rgba(255,255,255,.35); color: var(--white); }
-    .pill-btn.selected { background: var(--cyan); border-color: var(--cyan); color: var(--dark); }
+    .pill-btn.selected { background: var(--cyan); border-color: var(--cyan); color: var(--white); }
 
     /* Owner block */
     .owner-block { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; margin-bottom: 20px; position: relative; }
     .owner-block-title { font-size: 14px; font-weight: 700; color: var(--cyan); margin-bottom: 20px; }
     .btn-remove-owner { position: absolute; top: 16px; right: 16px; background: none; border: none; color: rgba(255,255,255,.3); font-size: 18px; cursor: pointer; line-height: 1; padding: 4px 8px; border-radius: 6px; }
-    .btn-remove-owner:hover { color: var(--orange); background: rgba(255,107,53,.1); }
+    .btn-remove-owner:hover { color: var(--orange); background: rgba(0,0,0,.1); }
     .btn-add-owner { background: none; border: none; color: var(--cyan); font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Inter', sans-serif; padding: 8px 0; display: flex; align-items: center; gap: 6px; }
     .btn-add-owner:hover { opacity: .8; }
 
@@ -155,16 +155,16 @@
     /* Upload zones */
     .upload-section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--gray); margin: 24px 0 12px; }
     .upload-zone { border: 2px dashed rgba(255,255,255,.12); border-radius: 12px; padding: 24px; text-align: center; cursor: pointer; transition: all .2s; margin-bottom: 12px; position: relative; }
-    .upload-zone:hover, .upload-zone.dragover { border-color: var(--cyan); background: rgba(0,191,255,.04); }
+    .upload-zone:hover, .upload-zone.dragover { border-color: var(--cyan); background: rgba(66,44,31,.04); }
     .upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
     .upload-zone-icon { font-size: 28px; margin-bottom: 8px; }
     .upload-zone-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
     .upload-zone-sub { font-size: 12px; color: var(--gray); }
     .upload-badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-left: 8px; }
-    .upload-badge.required { background: rgba(255,107,53,.15); color: var(--orange); border: 1px solid rgba(255,107,53,.3); }
+    .upload-badge.required { background: rgba(0,0,0,.15); color: var(--orange); border: 1px solid rgba(0,0,0,.3); }
     .upload-badge.optional { background: rgba(107,114,128,.12); color: var(--gray); border: 1px solid rgba(107,114,128,.2); }
     .uploaded-files { margin-top: 8px; }
-    .uploaded-file { display: flex; align-items: center; justify-content: space-between; background: rgba(0,191,255,.08); border: 1px solid rgba(0,191,255,.2); border-radius: 8px; padding: 8px 12px; margin-top: 6px; font-size: 13px; }
+    .uploaded-file { display: flex; align-items: center; justify-content: space-between; background: rgba(66,44,31,.08); border: 1px solid rgba(66,44,31,.2); border-radius: 8px; padding: 8px 12px; margin-top: 6px; font-size: 13px; }
     .uploaded-file-name { color: var(--cyan); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .btn-remove-file { background: none; border: none; color: rgba(255,255,255,.3); cursor: pointer; font-size: 16px; padding: 0 4px; }
     .btn-remove-file:hover { color: var(--orange); }
@@ -194,30 +194,30 @@
     .form-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 36px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.07); }
     .btn-back { background: transparent; border: 2px solid rgba(255,255,255,.15); color: rgba(255,255,255,.7); padding: 12px 28px; border-radius: 50px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all .2s; font-family: 'Inter', sans-serif; }
     .btn-back:hover { border-color: rgba(255,255,255,.4); color: var(--white); }
-    .btn-continue { background: var(--cyan); color: var(--dark); padding: 14px 36px; border-radius: 50px; font-size: 15px; font-weight: 700; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .2s; }
-    .btn-continue:hover:not(:disabled) { box-shadow: 0 8px 24px rgba(0,191,255,.35); transform: translateY(-2px); }
+    .btn-continue { background: var(--cyan); color: var(--white); padding: 14px 36px; border-radius: 50px; font-size: 15px; font-weight: 700; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-continue:hover:not(:disabled) { box-shadow: 0 8px 24px rgba(66,44,31,.35); transform: translateY(-2px); }
     .btn-continue:disabled { opacity: .4; cursor: not-allowed; }
-    .btn-submit { background: var(--cyan); color: var(--dark); padding: 16px 48px; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .2s; }
-    .btn-submit:hover:not(:disabled) { box-shadow: 0 8px 32px rgba(0,191,255,.4); transform: translateY(-2px); }
+    .btn-submit { background: var(--cyan); color: var(--white); padding: 16px 48px; border-radius: 50px; font-size: 16px; font-weight: 800; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .2s; }
+    .btn-submit:hover:not(:disabled) { box-shadow: 0 8px 32px rgba(66,44,31,.4); transform: translateY(-2px); }
     .btn-submit:disabled { opacity: .35; cursor: not-allowed; }
 
     /* Confirmation */
     .confirm-screen { display: none; text-align: center; padding: 20px 0; }
     .confirm-screen.active { display: block; }
-    .confirm-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(0,191,255,.12); border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
-    .app-id-card { background: rgba(0,191,255,.07); border: 2px solid rgba(0,191,255,.35); border-radius: 14px; padding: 20px 28px; margin: 8px auto 24px; display: inline-block; min-width: 260px; }
+    .confirm-icon { width: 72px; height: 72px; border-radius: 50%; background: rgba(66,44,31,.12); border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+    .app-id-card { background: rgba(66,44,31,.07); border: 2px solid rgba(66,44,31,.35); border-radius: 14px; padding: 20px 28px; margin: 8px auto 24px; display: inline-block; min-width: 260px; }
     .app-id-card-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.5); margin-bottom: 8px; }
     .confirm-id { font-size: 26px; font-weight: 900; color: var(--cyan); letter-spacing: .08em; margin: 0 0 6px; }
     .app-id-card-sub { font-size: 12px; color: rgba(255,255,255,.45); }
     .timeline { display: flex; flex-direction: column; gap: 16px; margin: 32px 0; text-align: left; }
     .timeline-item { display: flex; gap: 20px; align-items: flex-start; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 20px; }
-    .timeline-dot { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,191,255,.15); border: 2px solid var(--cyan); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--cyan); font-weight: 800; font-size: 13px; }
+    .timeline-dot { width: 36px; height: 36px; border-radius: 50%; background: rgba(66,44,31,.15); border: 2px solid var(--cyan); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: var(--cyan); font-weight: 800; font-size: 13px; }
     .timeline-content h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
     .timeline-content p { font-size: 13px; color: rgba(255,255,255,.55); }
     .confirm-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 
     /* Footer */
-    footer { background: #060a12; padding: 64px 0 32px; border-top: 1px solid rgba(255,255,255,.05); }
+    footer { background: #422C1F; padding: 64px 0 32px; border-top: 1px solid rgba(255,255,255,.05); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
     .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; margin: 14px 0 20px; max-width: 260px; }
     .footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-bottom: 16px; }
@@ -250,7 +250,7 @@
 <!-- Nav -->
 <nav id="navbar">
   <div class="container">
-    <a href="index.html"><img src="Carraway.png" alt="Carraway Business Group" style="height:160px !important;width:auto !important;display:block;"></a>
+    <a href="index.html"><img src="Carraway Brown Logo- .png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;"></a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="tools.html">Tools</a></li>
@@ -292,7 +292,7 @@
 
       <!-- Save button -->
       <div class="save-bar">
-        <button class="btn-save" onclick="saveProgress()">💾 Save &amp; Continue Later</button>
+        <button class="btn-save" onclick="saveProgress()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>Save &amp; Continue Later</button>
       </div>
 
       <!-- Progress Steps -->
@@ -406,7 +406,7 @@
           <div style="margin-top:24px">
             <div class="checkbox-wrap" onclick="toggleCheckbox('ownerCert')">
               <input type="checkbox" id="ownerCert" onclick="event.stopPropagation();validateStep()">
-              <span>I certify that I am an authorized representative of this business with the authority to submit this application and authorize Carraway Business Group to verify this information with potential lenders as needed to secure financing.</span>
+              <span>I certify that I am an authorized representative of this business with the authority to submit this application and authorize Carraway Capital to verify this information with potential lenders as needed to secure financing.</span>
             </div>
           </div>
 
@@ -571,7 +571,7 @@
           </div>
 
           <div class="field-group">
-            <label>How did you hear about Carraway Business Group? <span class="req">*</span></label>
+            <label>How did you hear about Carraway Capital? <span class="req">*</span></label>
             <select id="fundReferral" required>
               <option value="">Select…</option>
               <option>Google Search</option>
@@ -600,7 +600,7 @@
 
             <div class="upload-zone" id="zone-bankstmts" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'bankstmts')">
               <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(event,'bankstmts')">
-              <div class="upload-zone-icon">🏦</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
               <div class="upload-zone-title">Business Bank Statements <span class="upload-badge required">Required</span></div>
               <div class="upload-zone-sub">Last 3–6 months · PDF, JPG, PNG</div>
             </div>
@@ -608,7 +608,7 @@
 
             <div class="upload-zone" id="zone-govid" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'govid')">
               <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(event,'govid')">
-              <div class="upload-zone-icon">🪪</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M13 10h4M13 14h3"/></svg></div>
               <div class="upload-zone-title">Government-Issued ID <span class="upload-badge required">Required</span></div>
               <div class="upload-zone-sub">Driver's license, passport, or state ID · PDF, JPG, PNG</div>
             </div>
@@ -616,7 +616,7 @@
 
             <div class="upload-zone" id="zone-voidcheck" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'voidcheck')">
               <input type="file" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(event,'voidcheck')">
-              <div class="upload-zone-icon">🏷️</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
               <div class="upload-zone-title">Voided Check or Bank Account Details <span class="upload-badge required">Required</span></div>
               <div class="upload-zone-sub">PDF, JPG, PNG</div>
             </div>
@@ -626,7 +626,7 @@
 
             <div class="upload-zone" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'taxreturn')">
               <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(event,'taxreturn')">
-              <div class="upload-zone-icon">📋</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div>
               <div class="upload-zone-title">Business Tax Return — Most Recent <span class="upload-badge optional">Optional</span></div>
               <div class="upload-zone-sub">PDF, JPG, PNG</div>
             </div>
@@ -634,7 +634,7 @@
 
             <div class="upload-zone" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'pandl')">
               <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFiles(event,'pandl')">
-              <div class="upload-zone-icon">📊</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
               <div class="upload-zone-title">Profit &amp; Loss Statement <span class="upload-badge optional">Optional</span></div>
               <div class="upload-zone-sub">PDF, Excel, JPG, PNG</div>
             </div>
@@ -642,7 +642,7 @@
 
             <div class="upload-zone" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'balancesheet')">
               <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png,.xlsx,.xls" onchange="handleFiles(event,'balancesheet')">
-              <div class="upload-zone-icon">📈</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
               <div class="upload-zone-title">Balance Sheet <span class="upload-badge optional">Optional</span></div>
               <div class="upload-zone-sub">PDF, Excel, JPG, PNG</div>
             </div>
@@ -650,7 +650,7 @@
 
             <div class="upload-zone" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'bizdocs')">
               <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="handleFiles(event,'bizdocs')">
-              <div class="upload-zone-icon">📄</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
               <div class="upload-zone-title">Business License or Articles of Incorporation <span class="upload-badge optional">Optional</span></div>
               <div class="upload-zone-sub">PDF, JPG, PNG</div>
             </div>
@@ -658,7 +658,7 @@
 
             <div class="upload-zone" ondragover="handleDragOver(event,this)" ondragleave="handleDragLeave(this)" ondrop="handleDrop(event,'other')">
               <input type="file" multiple onchange="handleFiles(event,'other')">
-              <div class="upload-zone-icon">📎</div>
+              <div class="upload-zone-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg></div>
               <div class="upload-zone-title">Other Supporting Documents <span class="upload-badge optional">Optional</span></div>
               <div class="upload-zone-sub">Any other relevant documents</div>
             </div>
@@ -670,7 +670,7 @@
             <div class="skip-card-title">No problem — you can email documents later</div>
             <div class="skip-card-sub">Send your documents to <a href="mailto:Ben@gocarraway.com">Ben@gocarraway.com</a> after submitting. Include your Application ID in the subject line.</div>
             <div class="skip-card-actions">
-              <a href="mailto:Ben@gocarraway.com" class="btn btn-outline" style="font-size:13px;padding:9px 20px">📧 Email Documents to Ben</a>
+              <a href="mailto:Ben@gocarraway.com" class="btn btn-outline" style="font-size:13px;padding:9px 20px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email Documents to Ben</a>
               <button class="btn btn-cyan" style="font-size:13px;padding:9px 20px" onclick="document.getElementById('skipCard').classList.add('hidden');document.getElementById('docUploadArea').style.display=''">Actually I'll Upload Now</button>
             </div>
           </div>
@@ -697,12 +697,12 @@
             </div>
             <div class="checkbox-wrap" onclick="toggleCheckbox('consent2');updateSubmitBtn()">
               <input type="checkbox" id="consent2" onclick="event.stopPropagation();updateSubmitBtn()">
-              <span>I authorize Carraway Business Group to verify the information provided, share my information with potential lenders for financing purposes, and contact me via phone, email, or SMS regarding my application.</span>
+              <span>I authorize Carraway Capital to verify the information provided, share my information with potential lenders for financing purposes, and contact me via phone, email, or SMS regarding my application.</span>
             </div>
           </div>
 
           <div class="disclaimer-box" style="margin-top:24px">
-            <p>This is an application for business financing assistance, not a loan approval. Approval and terms are subject to lender review. Submitting this application does not guarantee financing. Carraway Business Group is an independent financing consultant and loan broker — not a bank, direct lender, or financial institution. We do not make credit decisions or fund loans directly.</p>
+            <p>This is an application for business financing assistance, not a loan approval. Approval and terms are subject to lender review. Submitting this application does not guarantee financing. Carraway Capital is an independent financing consultant and loan broker — not a bank, direct lender, or financial institution. We do not make credit decisions or fund loans directly.</p>
           </div>
 
           <div class="form-nav">
@@ -716,7 +716,7 @@
       <!-- Confirmation Screen -->
       <div class="form-card confirm-screen" id="confirmScreen">
         <div class="confirm-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00BFFF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C4956A" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <h2 style="font-size:28px;font-weight:900;margin-bottom:8px">Application Received!</h2>
         <p style="color:rgba(255,255,255,.55);margin-bottom:16px">Your application has been submitted successfully.</p>
@@ -754,8 +754,8 @@
         </div>
 
         <div class="confirm-actions">
-          <a id="confirmEmailLink" href="mailto:Ben@gocarraway.com" class="btn btn-outline">📧 Email Missing Documents</a>
-          <a href="index.html#contact" class="btn btn-cyan">📅 Book a Call with Ben</a>
+          <a id="confirmEmailLink" href="mailto:Ben@gocarraway.com" class="btn btn-outline"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email Missing Documents</a>
+          <a href="index.html#contact" class="btn btn-cyan"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:5px"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Book a Call with Ben</a>
         </div>
       </div>
 
@@ -769,7 +769,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="index.html">
-          <img src="Carraway.png" alt="Carraway Business Group" style="height:160px !important;width:auto !important;display:block;">
+          <img src="Carraway Brown Logo- .png" alt="Carraway Capital" style="height:160px !important;width:auto !important;display:block;">
         </a>
         <p>Business financing built on relationships, not commissions. Transparent. Personal. Zero ghosting.</p>
       </div>
@@ -796,7 +796,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Carraway Business Group · Arizona · All Rights Reserved</span>
+      <span>© 2026 Carraway Capital · Arizona · All Rights Reserved</span>
       <span>
         <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="terms.html">Terms of Service</a>
@@ -805,7 +805,7 @@
   </div>
 </footer>
 
-<div class="save-toast" id="saveToast">✓ Progress saved</div>
+<div class="save-toast" id="saveToast">Progress saved</div>
 
 <script>
 const STEP_LABELS = ['Business Info','Owner Info','Financial Info','Funding Request','Documents','Review'];
@@ -1138,7 +1138,7 @@ function showSubmitError(msg) {
   if (!errEl) {
     errEl = document.createElement('div');
     errEl.id = 'submitError';
-    errEl.style.cssText = 'background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.35);color:#FF6B35;padding:14px 18px;border-radius:10px;font-size:14px;margin-top:16px;line-height:1.5;';
+    errEl.style.cssText = 'background:rgba(66,44,31,.1);border:1px solid rgba(66,44,31,.35);color:#8B6B5B;padding:14px 18px;border-radius:10px;font-size:14px;margin-top:16px;line-height:1.5;';
     document.getElementById('submitBtn').parentElement.insertAdjacentElement('afterend', errEl);
   }
   errEl.textContent = msg;
@@ -1219,7 +1219,7 @@ function renderFiles(key) {
   if (!wrap) return;
   wrap.innerHTML = (uploadedFiles[key] || []).map((f,i) => `
     <div class="uploaded-file">
-      <span class="uploaded-file-name">📄 ${f.name}</span>
+      <span class="uploaded-file-name">${f.name}</span>
       <button class="btn-remove-file" onclick="removeFile('${key}',${i})">✕</button>
     </div>`).join('');
 }
