@@ -44,7 +44,7 @@
     }
     .section-label::before {
       content: ''; display: block; width: 28px; height: 2px;
-      background: #2ABFBF; flex-shrink: 0;
+      background: #E8732A; flex-shrink: 0;
     }
     .section-label.orange { color: #2ABFBF; }
     .section-label.orange::before { background: #2ABFBF; }
@@ -114,7 +114,7 @@
       font-size: 14px; font-weight: 500; color: rgba(255,255,255,.8);
       transition: color .2s;
     }
-    .nav-links a:hover { color: #FFFFFF; }
+    .nav-links a:hover { color: #E8732A; }
     .nav-cta { display: flex; align-items: center; gap: 12px; }
     .hamburger {
       display: none; flex-direction: column; gap: 5px;
@@ -143,8 +143,8 @@
     .hero {
       min-height: 100vh;
       background:
-        linear-gradient(rgba(66,44,31,.75), rgba(66,44,31,.75)),
-        url('https://images.unsplash.com/photo-fdrykjZSoyU?w=1600&q=80') center/cover no-repeat;
+        linear-gradient(rgba(66,44,31,.78), rgba(66,44,31,.78)),
+        url('Hero.jpg') center/cover no-repeat;
       display: flex; align-items: center;
       padding: calc(var(--nav-h) + 60px) 0 80px;
       position: relative; overflow: hidden;
@@ -156,8 +156,8 @@
       pointer-events: none;
     }
     .hero-inner {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
+      display: flex; flex-direction: column;
+      align-items: flex-start; max-width: 800px;
     }
     .hero-eyebrow {
       display: flex; align-items: center; gap: 10px;
@@ -238,7 +238,7 @@
     }
     .trust-metric:last-child { border-right: none; }
     .trust-num {
-      font-size: 2rem; font-weight: 900; color: #FFFFFF;
+      font-size: 2rem; font-weight: 900; color: #E8732A;
       line-height: 1; white-space: nowrap;
     }
     .trust-desc { font-size: 13px; color: #2ABFBF; line-height: 1.4; font-weight: 600; }
@@ -470,7 +470,7 @@
       background: #F5F0E8; border: 1px solid rgba(42,191,191,.15);
       border-radius: 14px; padding: 28px 20px; text-align: center;
     }
-    .trust-badge-icon { font-size: 36px; margin-bottom: 14px; }
+    .trust-badge-icon { font-size: 36px; margin-bottom: 14px; background: rgba(232,115,42,.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; margin: 0 auto 16px; }
     .trust-badge-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #111111; }
     .trust-badge-desc  { font-size: 13px; color: #444444; line-height: 1.5; }
 
@@ -645,29 +645,6 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.81 19.79 19.79 0 0 0 .07 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.72-.72a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             Book a Free Call
           </a>
-        </div>
-      </div>
-      <div class="hero-card-wrap">
-        <div class="hero-card">
-          <div class="hero-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ABFBF" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <div class="hero-card-label">Status</div>
-          <div class="hero-card-title">Pre-Qualification</div>
-          <div class="hero-card-sub">No credit pull required</div>
-          <div class="progress-group">
-            <div class="progress-bar"></div>
-            <div class="progress-bar"></div>
-            <div class="progress-bar"></div>
-          </div>
-          <div class="hero-card-footer">
-            <span class="match-label">Financing Match</span>
-            <span class="match-count">3 Options Found</span>
-          </div>
-          <div class="hero-badge">
-            <div class="hero-badge-title">Direct Access to Ben</div>
-            <div class="hero-badge-sub">No middlemen, no handoffs</div>
-          </div>
         </div>
       </div>
     </div>
