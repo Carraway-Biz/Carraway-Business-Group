@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carraway Capital | Business Financing Without the Runaround</title>
+  <title>Carraway Capital | Strategic Business Financing</title>
   <meta name="description" content="Carraway Capital offers transparent business financing in Arizona and nationwide. No ghosting. No bait-and-switch. Just honest funding built on relationships." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,14 +40,12 @@
     .section-label {
       display: flex; align-items: center; gap: 10px;
       font-size: 11px; font-weight: 700; letter-spacing: .16em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 20px;
+      text-transform: uppercase; color: #422C1F; margin-bottom: 20px;
     }
     .section-label::before {
       content: ''; display: block; width: 28px; height: 2px;
       background: #E8732A; flex-shrink: 0;
     }
-    .section-label.orange { color: #2ABFBF; }
-    .section-label.orange::before { background: #2ABFBF; }
     h2.display {
       font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 900; line-height: 1.1; letter-spacing: -.02em;
@@ -162,11 +160,11 @@
     .hero-eyebrow {
       display: flex; align-items: center; gap: 10px;
       font-size: 11px; font-weight: 700; letter-spacing: .18em;
-      text-transform: uppercase; color: #2ABFBF; margin-bottom: 28px;
+      text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: 28px;
     }
     .hero-eyebrow::before {
       content: ''; display: block; width: 28px; height: 2px;
-      background: #2ABFBF;
+      background: rgba(255,255,255,.4);
     }
     .hero h1 {
       font-size: clamp(3rem, 6vw, 5rem);
@@ -241,19 +239,18 @@
       font-size: 2rem; font-weight: 900; color: #E8732A;
       line-height: 1; white-space: nowrap;
     }
-    .trust-desc { font-size: 13px; color: #2ABFBF; line-height: 1.4; font-weight: 600; }
+    .trust-desc { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.4; font-weight: 600; }
 
     /* ─── Difference ────────────────────────────────────────────────── */
     .difference {
       padding: 100px 0;
       background: #F5F0E8; color: #111111;
     }
-    .difference .section-label { color: var(--cyan); }
-    .difference .section-label::before { background: var(--orange); }
+    .difference .section-label { color: #422C1F; }
     .diff-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 2px; margin-top: 60px;
-      border: 2px solid rgba(42,191,191,.2); border-radius: var(--radius);
+      border: 2px solid rgba(66,44,31,.15); border-radius: var(--radius);
       overflow: hidden;
     }
     .diff-card {
@@ -266,9 +263,9 @@
       content: ''; position: absolute; top: 0; left: 0; right: 0;
       height: 3px;
     }
-    .diff-card:nth-child(1)::before { background: var(--cyan); }
-    .diff-card:nth-child(2)::before { background: var(--cyan); }
-    .diff-card:nth-child(3)::before { background: var(--cyan); }
+    .diff-card:nth-child(1)::before { background: #422C1F; }
+    .diff-card:nth-child(2)::before { background: #422C1F; }
+    .diff-card:nth-child(3)::before { background: #422C1F; }
     .diff-card:hover { background: #EEE9DF; }
     .diff-icon {
       width: 48px; height: 48px; border-radius: 12px;
@@ -308,7 +305,7 @@
     .process-steps::after {
       content: ''; position: absolute;
       top: 30px; left: calc(16.67% + 16px); right: calc(16.67% + 16px);
-      height: 2px; background: linear-gradient(90deg, #2ABFBF, rgba(42,191,191,.15));
+      height: 2px; background: linear-gradient(90deg, #422C1F, rgba(66,44,31,.15));
       z-index: 0;
     }
     .step { padding: 0 20px; }
@@ -324,7 +321,7 @@
     .step-num {
       position: absolute; top: -10px; right: -10px;
       width: 28px; height: 28px; border-radius: 50%;
-      background: var(--cyan); color: var(--white);
+      background: #422C1F; color: var(--white);
       font-size: 11px; font-weight: 800;
       display: flex; align-items: center; justify-content: center;
     }
@@ -345,19 +342,19 @@
     }
     .tool-card.dark {
       background: #FFFFFF; color: #111111;
-      border: 2px solid rgba(42,191,191,.2);
+      border: 2px solid rgba(66,44,31,.15);
     }
     .tool-card.light {
       background: #FFFFFF;
-      border: 2px solid rgba(42,191,191,.2);
+      border: 2px solid rgba(66,44,31,.15);
       color: #111111;
     }
     .tool-card-tag {
       font-size: 10px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
       margin-bottom: 20px;
     }
-    .tool-card.dark .tool-card-tag { color: #2ABFBF; }
-    .tool-card.light .tool-card-tag { color: #2ABFBF; }
+    .tool-card.dark .tool-card-tag { color: #422C1F; }
+    .tool-card.light .tool-card-tag { color: #422C1F; }
     .tool-icon {
       width: 52px; height: 52px; border-radius: 14px;
       display: flex; align-items: center; justify-content: center;
@@ -382,7 +379,7 @@
       font-size: 13px; font-weight: 600; margin-bottom: 8px;
       color: #444444;
     }
-    .calc-row label span { color: #2ABFBF; font-weight: 700; }
+    .calc-row label span { color: #422C1F; font-weight: 700; }
     input[type=range] {
       width: 100%; -webkit-appearance: none;
       height: 4px; border-radius: 2px;
@@ -401,7 +398,7 @@
       background: #F5F0E8; border-radius: 10px;
       padding: 14px; text-align: center;
     }
-    .calc-result-val { font-size: 20px; font-weight: 800; color: #2ABFBF; }
+    .calc-result-val { font-size: 20px; font-weight: 800; color: #422C1F; }
     .calc-result-label { font-size: 11px; color: #6B7280; margin-top: 2px; }
 
     /* ─── Pre-Qual Quiz ──────────────────────────────────────────────── */
@@ -452,7 +449,20 @@
     .result-badge {
       padding: 8px 16px; border-radius: 20px;
       background: rgba(66,44,31,.12); border: 1px solid rgba(66,44,31,.25);
-      font-size: 13px; font-weight: 600; color: var(--cyan);
+      font-size: 13px; font-weight: 600; color: #422C1F;
+    }
+
+    /* ─── Credibility ───────────────────────────────────────────────── */
+    .credibility {
+      padding: 80px 0;
+      background: #111111; color: #FFFFFF;
+    }
+    .credibility-inner { max-width: 760px; }
+    .credibility .section-label { color: rgba(255,255,255,.5); }
+    .credibility .section-label::before { background: #E8732A; }
+    .credibility-body {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      line-height: 1.85; color: rgba(255,255,255,.8);
     }
 
     /* ─── Trust Section ──────────────────────────────────────────────── */
@@ -467,7 +477,7 @@
     }
     .trust-badge-card { flex: 0 1 240px; }
     .trust-badge-card {
-      background: #F5F0E8; border: 1px solid rgba(42,191,191,.15);
+      background: #F5F0E8; border: 1px solid rgba(66,44,31,.12);
       border-radius: 14px; padding: 28px 20px; text-align: center;
     }
     .trust-badge-icon { font-size: 36px; margin-bottom: 14px; background: rgba(232,115,42,.12); border-radius: 12px; display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; margin: 0 auto 16px; }
@@ -489,16 +499,16 @@
     .contact-item { display: flex; align-items: center; gap: 14px; }
     .contact-item-icon {
       width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
-      background: rgba(42,191,191,.12);
+      background: rgba(66,44,31,.08);
       display: flex; align-items: center; justify-content: center; font-size: 18px;
     }
     .contact-item-text label { font-size: 11px; color: #6B7280; text-transform: uppercase; letter-spacing: .1em; }
     .contact-item-text a, .contact-item-text span {
       display: block; font-size: 15px; font-weight: 600; color: #111111;
     }
-    .contact-item-text a:hover { color: #2ABFBF; }
+    .contact-item-text a:hover { color: #422C1F; }
     .form-card {
-      background: #FFFFFF; border: 1px solid rgba(42,191,191,.2);
+      background: #FFFFFF; border: 1px solid rgba(66,44,31,.15);
       border-radius: 20px; padding: 36px;
     }
     .form-title { font-size: 20px; font-weight: 800; margin-bottom: 24px; color: #111111; }
@@ -517,7 +527,7 @@
     }
     .form-group input::placeholder, .form-group textarea::placeholder { color: #9CA3AF; }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: #2ABFBF;
+      border-color: #422C1F;
     }
     .form-group select { appearance: none; cursor: pointer; }
     .form-group select option { background: #FFFFFF; color: #111111; }
@@ -527,7 +537,7 @@
     .form-success {
       display: none; text-align: center; padding: 20px 0;
     }
-    .form-success h3 { font-size: 20px; font-weight: 800; color: #2ABFBF; margin-bottom: 8px; }
+    .form-success h3 { font-size: 20px; font-weight: 800; color: #422C1F; margin-bottom: 8px; }
     .form-success p { color: #444444; font-size: 14px; }
 
     /* ─── Footer ─────────────────────────────────────────────────────── */
@@ -543,14 +553,14 @@
     .footer-brand p { font-size: 14px; color: var(--gray); line-height: 1.7; margin: 14px 0 20px; max-width: 260px; }
     .footer-col h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-bottom: 16px; }
     .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,.6); margin-bottom: 10px; transition: color .2s; }
-    .footer-col a:hover { color: #2ABFBF; }
+    .footer-col a:hover { color: #FFFFFF; }
     .footer-bottom {
       display: flex; justify-content: space-between; align-items: center;
       padding-top: 28px; border-top: 1px solid rgba(255,255,255,.06);
       font-size: 13px; color: var(--gray);
     }
     .footer-bottom a { color: var(--gray); }
-    .footer-bottom a:hover { color: #2ABFBF; }
+    .footer-bottom a:hover { color: #FFFFFF; }
 
     /* ─── Scroll Animations ──────────────────────────────────────────── */
     .fade-up {
@@ -629,15 +639,10 @@
     <div class="hero-inner">
       <div class="hero-content">
         <div class="hero-eyebrow">Business Financing</div>
-        <h1>
-          Get Funded.<br>
-          <span class="cyan">Without</span> the<br>
-          <span class="orange">Runaround.</span>
-        </h1>
+        <h1>Strategic Capital<br>for Growing Businesses</h1>
         <p class="hero-desc">
-          Full transparency, personal service, zero ghosting.
-          Carraway is business financing built on relationships
-          — not commissions.
+          Transparent, relationship-driven funding guidance for growing businesses
+          — not a transaction, not a commission play.
         </p>
         <div class="hero-actions">
           <a href="apply.html" class="btn btn-cyan">Get Pre-Qualified &nbsp;→</a>
@@ -659,8 +664,8 @@
       <div class="trust-desc">Response<br>Guarantee</div>
     </div>
     <div class="trust-metric">
-      <div class="trust-num">0%</div>
-      <div class="trust-desc">Ghosting<br>Rate</div>
+      <div class="trust-num" style="font-size:1.25rem;">Dedicated<br>Advisor</div>
+      <div class="trust-desc">Relationship-<br>Based Service</div>
     </div>
     <div class="trust-metric">
       <div class="trust-num">100%</div>
@@ -703,6 +708,18 @@
         <h3>Want Your Privacy Protected?</h3>
         <p>We never sell your information to third parties. Your data stays between you, me, and the lenders you choose to work with. Period. You control where your application goes.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Why Carraway Capital ───────────────────────────────────────── -->
+<section class="credibility">
+  <div class="container">
+    <div class="credibility-inner fade-up">
+      <div class="section-label">Why Carraway Capital</div>
+      <p class="credibility-body">
+        Carraway Capital was founded to give business owners what the big institutions won't — a real advisor, not a transaction. Benjamin Carraway brings an MBA from Thunderbird School of Global Management and firsthand experience as a business owner to every client relationship. Built for transparency. Built on trust.
+      </p>
     </div>
   </div>
 </section>
@@ -837,7 +854,7 @@
     <div class="contact-inner">
       <div class="fade-up">
         <div class="section-label">Get In Touch</div>
-        <h2>Ready to get funded<br>the <span class="cyan">right way?</span></h2>
+        <h2>Ready to get funded<br>the right way?</h2>
         <p class="contact-desc">
           No pressure, no commitment. Just an honest conversation about your
           financing needs and what options actually make sense for your business.
