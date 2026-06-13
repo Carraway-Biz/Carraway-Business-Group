@@ -1,4 +1,5 @@
 // v2 - gocarraway.com verified domain
+// Migrated to Next.js App Router. Business logic identical to /api/contact.js.
 import { Resend } from 'resend';
 
 const AIRTABLE_BASE  = 'appf20RCOmCyu8BEx';
@@ -7,20 +8,26 @@ const AIRTABLE_URL   = `https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_
 const NOTIFY_TO      = 'Ben@gocarraway.com';
 const NOTIFY_FROM    = 'notifications@gocarraway.com';
 
-export default async function handler(req, res) {
-  // ── CORS ─────────────────────────────────────────────────────────
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+const CORS = {
+  'Access-Control-Allow-Origin':  '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST')    return res.status(405).json({ error: 'Method not allowed' });
+function json(data, status = 200) {
+  return Response.json(data, { status, headers: CORS });
+}
 
+export async function OPTIONS() {
+  return new Response(null, { status: 200, headers: CORS });
+}
+
+export async function POST(request) {
   // ── API keys ──────────────────────────────────────────────────────
   const airtableKey = process.env.AIRTABLE_API_KEY;
   if (!airtableKey) {
     console.error('[contact] AIRTABLE_API_KEY is not set');
-    return res.status(500).json({ error: 'Server configuration error: missing Airtable API key' });
+    return json({ error: 'Server configuration error: missing Airtable API key' }, 500);
   }
 
   const resendKey = process.env.RESEND_API_KEY;
@@ -29,14 +36,14 @@ export default async function handler(req, res) {
   }
 
   // ── Parse body ────────────────────────────────────────────────────
-  let body = req.body;
-  if (typeof body === 'string') {
-    try { body = JSON.parse(body); } catch {
-      return res.status(400).json({ error: 'Invalid JSON body' });
-    }
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'Invalid JSON body' }, 400);
   }
   if (!body || typeof body !== 'object') {
-    return res.status(400).json({ error: 'Request body is missing or invalid' });
+    return json({ error: 'Request body is missing or invalid' }, 400);
   }
 
   const {
@@ -62,7 +69,7 @@ export default async function handler(req, res) {
   });
 
   if (!firstName || !lastName || !email) {
-    return res.status(400).json({ error: 'First name, last name, and email are required' });
+    return json({ error: 'First name, last name, and email are required' }, 400);
   }
 
   // ── Save to Airtable ──────────────────────────────────────────────
@@ -124,11 +131,11 @@ export default async function handler(req, res) {
         || responseText
         || 'Unknown Airtable error';
       console.error('[contact] Airtable rejected the request:', detail);
-      return res.status(502).json({
+      return json({
         error:           'Airtable rejected the submission',
         airtable_status: airtableRes.status,
         airtable_detail: detail,
-      });
+      }, 502);
     }
 
     console.log('[contact] Record created, id:', responseJson?.id);
@@ -159,7 +166,6 @@ export default async function handler(req, res) {
         console.log('[contact] Resend full response:', JSON.stringify(resendResult));
 
         if (resendResult.error) {
-          // Log but don't fail the request — Airtable save already succeeded
           console.error('[contact] Resend returned an error (non-fatal):', JSON.stringify(resendResult.error));
         } else {
           console.log('[contact] Notification email sent successfully. Email id:', resendResult.data?.id, '→', NOTIFY_TO);
@@ -169,11 +175,11 @@ export default async function handler(req, res) {
       }
     }
 
-    return res.status(200).json({ success: true, id: responseJson?.id });
+    return json({ success: true, id: responseJson?.id });
 
   } catch (err) {
     console.error('[contact] Error:', err.message, err.stack);
-    return res.status(500).json({ error: 'Internal server error', detail: err.message });
+    return json({ error: 'Internal server error', detail: err.message }, 500);
   }
 }
 

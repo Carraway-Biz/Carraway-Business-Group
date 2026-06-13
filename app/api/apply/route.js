@@ -1,5 +1,4 @@
-// Vercel serverless function: POST /api/apply
-// Creates an Airtable record and sends a Resend email notification.
+// Migrated to Next.js App Router. Business logic identical to /api/apply.js.
 //
 // Required env vars:
 //   AIRTABLE_API_KEY   — Airtable personal access token
@@ -10,6 +9,10 @@
 const AIRTABLE_BASE_ID = 'appf20RCOmCyu8BEx';
 // Prefer the explicit table ID env var; fall back to name only as last resort
 const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE_ID || 'Applications';
+
+function json(data, status = 200) {
+  return Response.json(data, { status });
+}
 
 function generateAppId() {
   return 'CBG-' + String(Math.floor(100000 + Math.random() * 900000));
@@ -152,28 +155,24 @@ async function sendResendEmail(applicationId, payload) {
   }
 }
 
-export default async function handler(req, res) {
+export async function POST(request) {
   // Outer catch-all — ensures every uncaught error is logged with full stack
   try {
-    if (req.method !== 'POST') {
-      return res.status(405).json({ error: 'Method not allowed' });
-    }
-
     console.log('[apply] Handler invoked');
     console.log('[apply] AIRTABLE_TABLE resolved to:', AIRTABLE_TABLE);
     console.log('[apply] AIRTABLE_TABLE_ID env var:', process.env.AIRTABLE_TABLE_ID || '(not set — using name fallback)');
 
     if (!process.env.AIRTABLE_API_KEY) {
       console.error('[apply] FATAL: AIRTABLE_API_KEY env var is not set');
-      return res.status(500).json({ error: 'Server configuration error. Please contact Ben@gocarraway.com.' });
+      return json({ error: 'Server configuration error. Please contact Ben@gocarraway.com.' }, 500);
     }
 
     let payload;
     try {
-      payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      payload = await request.json();
     } catch (parseErr) {
       console.error('[apply] Body parse error:', parseErr.message);
-      return res.status(400).json({ error: 'Invalid request body.' });
+      return json({ error: 'Invalid request body.' }, 400);
     }
 
     console.log('[apply] Payload keys received:', Object.keys(payload || {}));
@@ -253,7 +252,7 @@ export default async function handler(req, res) {
     function mapCreditScore(formVal) {
       if (!formVal) return undefined;
       const VALID = new Set(['Below 550', '550-620', '620-680', '680-720', '720+']);
-      const normalized = String(formVal).replace(/\u2013|\u2014/g, '-'); // en/em dash → hyphen
+      const normalized = String(formVal).replace(/–|—/g, '-'); // en/em dash → hyphen
       return VALID.has(normalized) ? normalized : undefined;
     }
 
@@ -297,7 +296,7 @@ export default async function handler(req, res) {
       console.log('[apply] Airtable record created. Record ID:', record.id);
     } catch (airtableErr) {
       console.error('[apply] Airtable error:', airtableErr.message);
-      return res.status(500).json({ error: 'Failed to save your application. Please try again or contact Ben@gocarraway.com.' });
+      return json({ error: 'Failed to save your application. Please try again or contact Ben@gocarraway.com.' }, 500);
     }
 
     // Email notification — failure is logged but does not fail the request
@@ -307,12 +306,12 @@ export default async function handler(req, res) {
       console.error('[apply] Resend error:', emailErr.message);
     }
 
-    return res.status(200).json({ applicationId });
+    return json({ applicationId });
 
   } catch (unexpectedErr) {
     // Catches anything not handled above — runtime errors, etc.
     console.error('[apply] UNEXPECTED ERROR:', unexpectedErr.message);
     console.error('[apply] Stack trace:', unexpectedErr.stack);
-    return res.status(500).json({ error: 'An unexpected error occurred. Please contact Ben@gocarraway.com.' });
+    return json({ error: 'An unexpected error occurred. Please contact Ben@gocarraway.com.' }, 500);
   }
 }
