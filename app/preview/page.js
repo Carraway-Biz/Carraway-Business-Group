@@ -9,6 +9,7 @@ import Process from '../components/Process';
 import WhyCarraway from '../components/WhyCarraway';
 import About from '../components/About';
 import FinalCTA from '../components/FinalCTA';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 
 export default function PreviewPage() {
@@ -23,6 +24,7 @@ export default function PreviewPage() {
         <Process />
         <WhyCarraway />
         <About />
+        <ContactSection />
         <FinalCTA />
       </main>
       <Footer />

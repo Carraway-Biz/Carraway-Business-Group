@@ -4,10 +4,10 @@ import styles from './ProofBlock.module.css';
 // Capability framing — every value is true today, no track-record claims.
 // `num` set → animated counter; `word` set → static mono word at the same scale.
 const STATS = [
-  { word: 'Tailored',           label: 'Funding Structure',   note: 'sized to your deal, not a fixed range' },
-  { num: 6,        suffix: '',  label: 'Funding Types',       note: 'working capital to real estate' },
-  { num: 40,       suffix: '+', label: 'Lender Relationships', note: 'vetted capital partners' },
-  { word: 'Days',               label: 'To Term Sheet',       note: 'on qualified deals, not months' },
+  { word: 'Tailored',      label: 'Funding Structure',    note: 'sized to your deal, not a fixed range' },
+  { num: 6,  suffix: '',   label: 'Funding Types',        note: 'working capital to real estate' },
+  { word: 'Nationwide',    label: 'Lender Network',       note: 'banks, credit unions & private capital' },
+  { word: 'Days',          label: 'To Term Sheet',        note: 'on qualified deals, not months' },
 ];
 
 export default function ProofBlock() {
