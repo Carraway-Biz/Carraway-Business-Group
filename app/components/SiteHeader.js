@@ -5,9 +5,9 @@ import styles from './SiteHeader.module.css';
 
 const NAV = [
   { label: 'Solutions',    href: '#solutions' },
-  { label: 'Process',      href: '#process' },
   { label: 'Who We Serve', href: '#who' },
   { label: 'About',        href: '#about' },
+  { label: 'Contact',      href: '#contact' },
 ];
 
 export default function SiteHeader() {

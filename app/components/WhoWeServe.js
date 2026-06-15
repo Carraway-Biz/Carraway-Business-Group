@@ -13,10 +13,10 @@ const INDUSTRIES = [
 ];
 
 const CRITERIA = [
-  { label: 'Time in Business', value: '2+ years operating history' },
-  { label: 'Annual Revenue',   value: '$750K minimum' },
-  { label: 'Funding Range',    value: '$250K – $25M' },
-  { label: 'Credit Profile',   value: '650+ preferred, 620+ minimum' },
+  { label: 'Time in Business', value: 'Operating history, any stage' },
+  { label: 'Annual Revenue',   value: 'Generating consistent revenue' },
+  { label: 'Funding Range',    value: 'Tailored to your deal — no fixed minimum' },
+  { label: 'Credit Profile',   value: 'A range of profiles considered' },
 ];
 
 export default function WhoWeServe() {
