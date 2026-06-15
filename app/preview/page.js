@@ -1,19 +1,15 @@
 // Phase 3 preview — header + hero only, for design sign-off.
-// ?nav=a → transparent nav, shadow on scroll (Option A)
-// ?nav=b → Sand nav, dark text (Option B)
-// Default: Option A
+// 2026 institutional direction: near-black hero, transparent→solid nav,
+// pure typography. Lives at /preview so production and forms stay untouched.
 import SiteHeader from '../components/SiteHeader';
 import Hero from '../components/Hero';
 
-export default async function PreviewPage({ searchParams }) {
-  const params = await searchParams;
-  const variant = params?.nav === 'b' ? 'b' : 'a';
-
+export default function PreviewPage() {
   return (
     <>
-      <SiteHeader variant={variant} />
+      <SiteHeader />
       <main>
-        <Hero variant={variant} />
+        <Hero />
       </main>
     </>
   );

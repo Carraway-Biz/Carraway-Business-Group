@@ -1,20 +1,27 @@
 /* ─── Carraway Capital — Design Tokens ───────────────────────────────
-   Phase 2 approved palette. Turquoise & Copper are ACCENTS, never fields.
-   Copper owns the primary CTA only. */
+   2026 institutional reset (Blackstone / KKR / Apollo reference class).
+   LIGHT is the dominant surface; near-black is used as two bookend
+   moments (hero + footer). Turquoise & Copper are surgical accents.
+   Brown is retired as a surface — it lives only inside the SVG mark. */
 :root {
-  /* Palette */
-  --soil:      #1C0F08;  /* hero, footer, deepest surfaces */
-  --mesa:      #3D2314;  /* nav, proof block */
-  --sand:      #F7F0E6;  /* primary light ground */
-  --dusk:      #E8DDD0;  /* alternating tint, cards */
-  --turquoise: #2ABFBF;  /* trust accent — icons, links, eyebrow rules */
+  /* Surfaces */
+  --white:     #FFFFFF;  /* primary light ground — ~80% of the page */
+  --obsidian:  #0A0A0A;  /* near-black — hero + footer only */
+  --mesa:      #3D2314;  /* proof block stat counters only */
+
+  /* Accents (surgical) */
+  --sand:      #F7F0E6;  /* text/elements on dark surfaces */
+  --turquoise: #2ABFBF;  /* trust accent — eyebrow rules, icons, links */
   --copper:    #E8732A;  /* ACTION ONLY — primary CTA */
 
   /* Text */
-  --ink:       #16100B;  /* near-black on light grounds */
-  --ink-soft:  #4A3F36;  /* secondary text on light */
+  --ink:       #0A0A0A;  /* near-black on light grounds */
+  --ink-soft:  #55514C;  /* secondary text on light */
   --cream:     #F7F0E6;  /* text on dark grounds */
-  --cream-soft:rgba(247,240,230,.72); /* secondary text on dark */
+  --cream-soft:rgba(247,240,230,.65); /* secondary text on dark */
+
+  /* Legacy aliases (retired surfaces, retained for accent text only) */
+  --soil:      #0A0A0A;
 
   /* Type families (wired via next/font in layout.js) */
   --font-display: 'Fraunces', Georgia, serif;
@@ -33,7 +40,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  background: var(--sand);
+  background: var(--white);
   color: var(--ink);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;

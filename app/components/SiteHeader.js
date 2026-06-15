@@ -10,46 +10,36 @@ const NAV = [
   { label: 'About',        href: '#about' },
 ];
 
-export default function SiteHeader({ variant = 'a' }) {
+export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (variant !== 'a') return;
     const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, [variant]);
-
-  const isA = variant === 'a';
-  const isB = variant === 'b';
+  }, []);
 
   return (
-    <header
-      className={[
-        styles.header,
-        isA && styles.headerA,
-        isA && scrolled && styles.headerAScrolled,
-        isB && styles.headerB,
-      ].filter(Boolean).join(' ')}
-    >
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <a href="#home" className={styles.brand} aria-label="Carraway Capital — home">
-          <RoadrunnerMark className={[styles.mark, isB && styles.markDark].filter(Boolean).join(' ')} />
-          <span className={[styles.wordmark, isB && styles.wordmarkDark].filter(Boolean).join(' ')}>
+          <RoadrunnerMark className={styles.mark} />
+          <span className={styles.wordmark}>
             Carraway<span className={styles.wordmarkThin}> Capital</span>
           </span>
         </a>
 
         <nav className={styles.nav} aria-label="Primary">
           {NAV.map((item) => (
-            <a key={item.href} href={item.href} className={[styles.navLink, isB && styles.navLinkDark].filter(Boolean).join(' ')}>
+            <a key={item.href} href={item.href} className={styles.navLink}>
               {item.label}
             </a>
           ))}
         </nav>
 
         <div className={styles.actions}>
-          <a href="#contact" className={isB ? 'btn btn-ghost--dark' : 'btn btn-ghost'}>Book a Call</a>
+          <a href="#contact" className="btn btn-ghost">Book a Call</a>
           <a href="#qualifier" className="btn btn-primary">Start Your Qualifier</a>
         </div>
       </div>
