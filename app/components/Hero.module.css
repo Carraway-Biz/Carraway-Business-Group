@@ -1,0 +1,56 @@
+.hero {
+  position: relative;
+  min-height: calc(100svh - var(--nav-h));
+  display: flex; align-items: center;
+  background: var(--soil);
+  padding: 96px 0 112px;
+  overflow: hidden;
+}
+
+/* Subtle warmth: a barely-there radial lift from the lower center,
+   keeps the deep Soil ground from reading flat. */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(
+    120% 90% at 50% 120%,
+    rgba(232, 115, 42, .10) 0%,
+    rgba(61, 35, 20, .35) 38%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.inner { position: relative; z-index: 1; }
+
+.content {
+  max-width: 760px;
+  animation: fadeUp .7s ease both;
+}
+
+.eyebrow { margin-bottom: 28px; }
+
+.headline {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 6.2vw, 3.9rem);
+  line-height: 1.04;
+  letter-spacing: -.015em;
+  color: var(--cream);
+  margin-bottom: 28px;
+  text-wrap: balance;
+}
+
+.subhead {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.7;
+  color: var(--cream-soft);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+.actions {
+  display: flex; flex-wrap: wrap; gap: 14px;
+}

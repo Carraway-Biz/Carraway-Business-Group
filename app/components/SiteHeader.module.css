@@ -1,0 +1,48 @@
+.header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center;
+  background: rgba(61, 35, 20, .92); /* Mesa, slight transparency */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(247, 240, 230, .08);
+}
+
+.inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex; align-items: center; gap: 12px;
+  color: var(--cream);
+  flex-shrink: 0;
+}
+.mark {
+  height: 26px; width: auto;
+  color: var(--turquoise);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 19px; font-weight: 600; letter-spacing: -.01em;
+  color: var(--cream);
+}
+.wordmarkThin { font-weight: 300; opacity: .8; }
+
+.nav {
+  display: none;
+  align-items: center; gap: 36px;
+}
+.navLink {
+  font-family: var(--font-body);
+  font-size: 14px; font-weight: 500;
+  color: rgba(247, 240, 230, .78);
+  transition: color .2s ease;
+}
+.navLink:hover { color: var(--cream); }
+
+.actions { display: none; align-items: center; gap: 12px; }
+
+@media (min-width: 940px) {
+  .nav { display: flex; }
+  .actions { display: flex; }
+}
