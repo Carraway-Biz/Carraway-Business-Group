@@ -1,9 +1,9 @@
 import Eyebrow from './Eyebrow';
 import styles from './Hero.module.css';
 
-export default function Hero() {
+export default function Hero({ variant = 'a' }) {
   return (
-    <section className={styles.hero} id="home">
+    <section className={[styles.hero, variant === 'b' && styles.heroB].filter(Boolean).join(' ')} id="home">
       <div className={`container ${styles.inner}`}>
         <div className={styles.content}>
           <Eyebrow className={styles.eyebrow}>Commercial Capital, Brokered with Intent</Eyebrow>

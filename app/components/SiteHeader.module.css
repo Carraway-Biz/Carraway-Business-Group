@@ -2,9 +2,33 @@
   position: sticky; top: 0; z-index: 100;
   height: var(--nav-h);
   display: flex; align-items: center;
-  background: rgba(61, 35, 20, .92); /* Mesa, slight transparency */
+  /* Base — overridden by variant classes below */
+  background: rgba(61, 35, 20, .92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(247, 240, 230, .08);
+  transition: background .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+/* ── Option A: transparent-over-hero, shadow on scroll ── */
+.headerA {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+}
+.headerAScrolled {
+  background: rgba(28, 15, 8, .92); /* Soil */
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(247, 240, 230, .10);
+  box-shadow: 0 1px 24px rgba(0, 0, 0, .35);
+}
+
+/* ── Option B: Sand ground, decisive contrast ── */
+.headerB {
+  background: var(--sand);
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(22, 16, 11, .12);
+  box-shadow: none;
 }
 
 .inner {
@@ -19,12 +43,18 @@
 }
 .mark {
   height: 26px; width: auto;
-  color: var(--turquoise);
+  color: var(--sand); /* Sand — not turquoise */
+}
+.markDark {
+  color: var(--mesa);
 }
 .wordmark {
   font-family: var(--font-display);
   font-size: 19px; font-weight: 600; letter-spacing: -.01em;
   color: var(--cream);
+}
+.wordmarkDark {
+  color: var(--ink);
 }
 .wordmarkThin { font-weight: 300; opacity: .8; }
 
@@ -39,6 +69,11 @@
   transition: color .2s ease;
 }
 .navLink:hover { color: var(--cream); }
+
+.navLinkDark {
+  color: var(--ink-soft);
+}
+.navLinkDark:hover { color: var(--ink); }
 
 .actions { display: none; align-items: center; gap: 12px; }
 

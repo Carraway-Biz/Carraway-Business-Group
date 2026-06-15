@@ -1,9 +1,9 @@
 .hero {
   position: relative;
-  min-height: calc(100svh - var(--nav-h));
+  min-height: 100svh; /* full viewport — nav overlaps in Option A */
   display: flex; align-items: center;
   background: var(--soil);
-  padding: 96px 0 112px;
+  padding: 160px 0 140px; /* generous top gives content room to breathe */
   overflow: hidden;
 }
 
@@ -22,6 +22,12 @@
 }
 
 .inner { position: relative; z-index: 1; }
+
+/* Option B: nav is solid/visible so hero doesn't need to fill full viewport height */
+.heroB {
+  min-height: calc(100svh - var(--nav-h));
+  padding-top: 120px;
+}
 
 .content {
   max-width: 760px;
