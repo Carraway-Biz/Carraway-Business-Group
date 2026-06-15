@@ -30,13 +30,21 @@ export default function About() {
 
           <div className={styles.body}>
             <p>
+              Ben Carraway founded Carraway Capital after a career spent inside the
+              numbers — as an FP&amp;A analyst building the board-level models and
+              forecasts that guide real operating decisions. He holds an MBA in Global
+              Management from the Thunderbird School of Global Management and started
+              his path as an entrepreneur, building and running his own ventures. That
+              combination — the rigor of finance and the instincts of an operator — is
+              the lens he brings to every deal. He reads a P&amp;L the way you live it,
+              and treats your next move like it&apos;s his own.
+            </p>
+            <p>
               Carraway Capital was founded on a simple premise: business owners deserve
               a capital partner who works at their speed and structures solutions around
               how they actually operate — not around what a single lender happens to offer.
-            </p>
-            <p>
               We connect established businesses with the right capital across a vetted
-              network of banks, credit unions, and non-bank lenders. Every deal is
+              network of banks, credit unions, and non-bank lenders, with every deal
               structured around your cash flow, your collateral, and your timeline.
             </p>
             <p>

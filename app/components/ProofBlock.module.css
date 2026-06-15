@@ -29,6 +29,17 @@
   line-height: 1;
 }
 
+/* Word-type stats ("Tailored", "Days") — eased down a touch so a long
+   word reads at the same visual weight as the numerals beside it. */
+.numberWord {
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  letter-spacing: -.01em;
+  align-self: flex-start;
+  display: flex;
+  align-items: baseline;
+  min-height: clamp(2.8rem, 4.5vw, 4rem);
+}
+
 .labelGroup {
   display: flex;
   flex-direction: column;

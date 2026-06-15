@@ -1,0 +1,122 @@
+/* ── Hero band (dark) ── */
+.hero {
+  background: var(--obsidian);
+  padding: calc(var(--nav-h) + 96px) 0 96px;
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 880px;
+}
+
+.heroEyebrow { }
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: clamp(2.75rem, 6.5vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+  color: var(--sand);
+}
+
+.heroPosition {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--cream-soft);
+  max-width: 56ch;
+}
+
+/* ── Body (light) ── */
+.body {
+  background: var(--white);
+  padding: 120px 0 140px;
+}
+
+.bodyInner {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 65ch;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.blockH {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+
+.blockP {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.78;
+  color: var(--ink-soft);
+}
+
+/* ── Best-fit aside ── */
+.aside {
+  position: sticky;
+  top: calc(var(--nav-h) + 32px);
+  background: #F7F4F0;
+  border: 1px solid rgba(10, 10, 10, .1);
+  border-radius: 2px;
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.asideEyebrow { }
+
+.fitList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.fitItem {
+  display: flex;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.fitMark {
+  color: var(--turquoise);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .bodyInner {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .aside { position: static; }
+  .body { padding: 80px 0 100px; }
+  .hero { padding: calc(var(--nav-h) + 64px) 0 72px; }
+}
