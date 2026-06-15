@@ -26,7 +26,7 @@ export default function SiteHeader() {
           <img
             src="/Carrawaylogo.svg"
             alt="Carraway Capital"
-            height="44"
+            height="32"
             className={styles.logo}
           />
         </a>

@@ -17,7 +17,7 @@
 
 .inner {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
 }
 
 .brand {
@@ -25,24 +25,26 @@
   flex-shrink: 0;
 }
 .logo {
-  height: 44px;
+  height: 32px;
   width: auto;
   display: block;
 }
 
 .nav {
   display: none;
-  align-items: center; gap: 36px;
+  align-items: center; gap: 24px;
+  flex-shrink: 0;
 }
 .navLink {
   font-family: var(--font-body);
-  font-size: 14px; font-weight: 500;
+  font-size: 13px; font-weight: 500;
   color: rgba(247, 240, 230, .6);
   transition: color .2s ease;
+  white-space: nowrap;
 }
 .navLink:hover { color: var(--sand); }
 
-.actions { display: none; align-items: center; gap: 12px; }
+.actions { display: none; align-items: center; gap: 8px; flex-shrink: 0; }
 
 @media (min-width: 940px) {
   .nav { display: flex; }
