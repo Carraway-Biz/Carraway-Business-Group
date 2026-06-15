@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import LogoLockup from './LogoLockup';
 import styles from './SiteHeader.module.css';
 
 const NAV = [
@@ -24,7 +23,12 @@ export default function SiteHeader() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
-          <LogoLockup className={styles.logo} />
+          <img
+            src="/Carrawaylogo.svg"
+            alt="Carraway Capital"
+            height="44"
+            className={styles.logo}
+          />
         </a>
 
         <nav className={styles.nav} aria-label="Primary">

@@ -1,4 +1,3 @@
-import LogoLockup from './LogoLockup';
 import styles from './Footer.module.css';
 
 const NAV = [
@@ -15,7 +14,12 @@ export default function Footer() {
 
         <div className={styles.top}>
           <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
-            <LogoLockup className={styles.logo} />
+            <img
+              src="/Carrawaylogo.svg"
+              alt="Carraway Capital"
+              height="36"
+              className={styles.logo}
+            />
           </a>
 
           <nav className={styles.nav} aria-label="Footer">
