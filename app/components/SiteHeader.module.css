@@ -21,19 +21,13 @@
 }
 
 .brand {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center;
   flex-shrink: 0;
 }
-.mark {
-  height: 26px; width: auto;
-  color: var(--sand);
+.logo {
+  height: 40px;
+  width: auto;
 }
-.wordmark {
-  font-family: var(--font-display);
-  font-size: 19px; font-weight: 600; letter-spacing: -.01em;
-  color: var(--sand);
-}
-.wordmarkThin { font-weight: 300; opacity: .8; }
 
 .nav {
   display: none;

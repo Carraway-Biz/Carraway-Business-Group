@@ -1,9 +1,8 @@
-import RoadrunnerMark from './RoadrunnerMark';
+import LogoLockup from './LogoLockup';
 import styles from './Footer.module.css';
 
 const NAV = [
   { label: 'Solutions',    href: '#solutions' },
-  { label: 'Process',      href: '#process' },
   { label: 'Who We Serve', href: '#who' },
   { label: 'About',        href: '#about' },
   { label: 'Contact',      href: '#contact' },
@@ -15,11 +14,8 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
 
         <div className={styles.top}>
-          <a href="#home" className={styles.brand} aria-label="Carraway Capital — home">
-            <RoadrunnerMark className={styles.mark} />
-            <span className={styles.wordmark}>
-              Carraway<span className={styles.wordmarkThin}> Capital</span>
-            </span>
+          <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
+            <LogoLockup className={styles.logo} />
           </a>
 
           <nav className={styles.nav} aria-label="Footer">

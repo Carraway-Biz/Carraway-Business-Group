@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import RoadrunnerMark from './RoadrunnerMark';
+import LogoLockup from './LogoLockup';
 import styles from './SiteHeader.module.css';
 
 const NAV = [
@@ -23,11 +23,8 @@ export default function SiteHeader() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="#home" className={styles.brand} aria-label="Carraway Capital — home">
-          <RoadrunnerMark className={styles.mark} />
-          <span className={styles.wordmark}>
-            Carraway<span className={styles.wordmarkThin}> Capital</span>
-          </span>
+        <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
+          <LogoLockup className={styles.logo} />
         </a>
 
         <nav className={styles.nav} aria-label="Primary">
