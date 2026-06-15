@@ -1,0 +1,117 @@
+.section {
+  background: var(--white);
+  padding: 120px 0 140px;
+}
+
+.inner { }
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 640px;
+  margin-bottom: 0;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.rule {
+  height: 1px;
+  background: rgba(10, 10, 10, .1);
+  margin: 64px 0 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-left: 1px solid rgba(10, 10, 10, .1);
+}
+
+.card {
+  position: relative;
+  padding: 40px 36px 40px;
+  border-right: 1px solid rgba(10, 10, 10, .1);
+  border-bottom: 1px solid rgba(10, 10, 10, .1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  transition: background .22s ease;
+  cursor: default;
+}
+
+.card:hover {
+  background: #F7F4F0;
+}
+
+.cardTop { display: flex; flex-direction: column; gap: 10px; }
+
+.cardTag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .05em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  line-height: 1.1;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  flex: 1;
+  /* Hidden by default, revealed on hover */
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.card:hover .cardDesc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cardArrow {
+  font-size: 18px;
+  color: var(--turquoise);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity .22s ease, transform .22s ease, color .22s ease;
+  align-self: flex-end;
+}
+
+.card:hover .cardArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr; }
+  .section { padding: 80px 0 100px; }
+  .card { padding: 32px 24px; }
+  .cardDesc { opacity: 1; transform: none; }
+  .cardArrow { opacity: 1; transform: none; }
+}

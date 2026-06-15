@@ -1,0 +1,113 @@
+.section {
+  background: var(--white);
+  padding: 120px 0 140px;
+  border-top: 1px solid rgba(10, 10, 10, .08);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: 44ch;
+}
+
+.industries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.industryTag {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border: 1px solid rgba(10, 10, 10, .14);
+  border-radius: 2px;
+  color: var(--ink-soft);
+  transition: border-color .2s, color .2s;
+}
+
+.industryTag:hover {
+  border-color: var(--turquoise);
+  color: var(--ink);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 8px;
+}
+
+.criteriaLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.criteria {
+  border-top: 1px solid rgba(10, 10, 10, .1);
+  margin-bottom: 40px;
+}
+
+.criterionRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(10, 10, 10, .1);
+}
+
+.criterionLabel {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.criterionValue {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink);
+  text-align: right;
+}
+
+.cta { }
+
+@media (max-width: 860px) {
+  .inner { grid-template-columns: 1fr; gap: 60px; }
+  .section { padding: 80px 0 100px; }
+}

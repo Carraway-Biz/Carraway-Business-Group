@@ -1,8 +1,15 @@
-// Phase 3 preview — header + hero only, for design sign-off.
-// 2026 institutional direction: near-black hero, transparent→solid nav,
-// pure typography. Lives at /preview so production and forms stay untouched.
+// Phase 3 preview — full page, design sign-off before promoting to "/".
+// Production homepage and all API routes remain untouched.
 import SiteHeader from '../components/SiteHeader';
 import Hero from '../components/Hero';
+import Solutions from '../components/Solutions';
+import ProofBlock from '../components/ProofBlock';
+import WhoWeServe from '../components/WhoWeServe';
+import Process from '../components/Process';
+import WhyCarraway from '../components/WhyCarraway';
+import About from '../components/About';
+import FinalCTA from '../components/FinalCTA';
+import Footer from '../components/Footer';
 
 export default function PreviewPage() {
   return (
@@ -10,7 +17,15 @@ export default function PreviewPage() {
       <SiteHeader />
       <main>
         <Hero />
+        <Solutions />
+        <ProofBlock />
+        <WhoWeServe />
+        <Process />
+        <WhyCarraway />
+        <About />
+        <FinalCTA />
       </main>
+      <Footer />
     </>
   );
 }
