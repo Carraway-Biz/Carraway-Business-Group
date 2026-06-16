@@ -40,7 +40,7 @@ export default function SiteHeader() {
         </nav>
 
         <div className={styles.actions}>
-          <a href="#contact" className="btn btn-ghost">Book a Call</a>
+          <a href="https://cal.com/carrawaycapital/discovery-call" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book a Call</a>
           <a href="#qualifier" className="btn btn-primary">Start Your Qualifier</a>
         </div>
       </div>

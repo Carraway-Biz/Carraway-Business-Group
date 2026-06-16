@@ -55,7 +55,7 @@ export default function About() {
 
           <div className={styles.actions}>
             <a href="#qualifier" className="btn btn-primary">Start Your Qualifier</a>
-            <a href="#contact" className="btn btn-ghost--dark">Book a Call</a>
+            <a href="https://cal.com/carrawaycapital/discovery-call" target="_blank" rel="noopener noreferrer" className="btn btn-ghost--dark">Book a Call</a>
           </div>
         </div>
 
