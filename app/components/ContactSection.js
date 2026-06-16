@@ -170,15 +170,20 @@ export default function ContactSection() {
           <div className={styles.row}>
             <div className={styles.field}>
               <label className={styles.label} htmlFor="businessType">Business Type</label>
-              <input
+              <select
                 id="businessType"
                 name="businessType"
-                type="text"
                 className={styles.input}
                 value={form.businessType}
                 onChange={set('businessType')}
-                placeholder="e.g. Manufacturing, Healthcare"
-              />
+              >
+                <option value="">Select business type</option>
+                <option value="LLC">LLC</option>
+                <option value="S-Corp">S-Corp</option>
+                <option value="C-Corp">C-Corp</option>
+                <option value="Sole Proprietor">Sole Proprietor</option>
+                <option value="Partnership">Partnership</option>
+              </select>
             </div>
             <div className={styles.field}>
               <label className={styles.label} htmlFor="fundingAmount">Funding Need</label>
