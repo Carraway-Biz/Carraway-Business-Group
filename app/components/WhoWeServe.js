@@ -53,7 +53,7 @@ export default function WhoWeServe() {
             ))}
           </div>
           <div className={styles.cta}>
-            <a href="#qualifier" className="btn btn-primary">Check Your Eligibility</a>
+            <a href="#contact" className="btn btn-primary">Check Your Eligibility</a>
           </div>
         </div>
 

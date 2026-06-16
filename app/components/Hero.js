@@ -29,7 +29,7 @@ export default function Hero() {
 
           <div className={styles.bottomRight}>
             <div className={styles.actions}>
-              <a href="#qualifier" className="btn btn-primary">Start Your Qualifier</a>
+              <a href="#contact" className="btn btn-primary">Start Your Qualifier</a>
               <a href="https://cal.com/carrawaycapital/discovery-call" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book a Call</a>
             </div>
             <p className={styles.reassurance}>No obligation. No credit impact.</p>

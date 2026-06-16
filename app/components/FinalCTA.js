@@ -20,7 +20,7 @@ export default function FinalCTA() {
             we're the right partner for this deal.
           </p>
           <div className={styles.actions}>
-            <a href="#qualifier" className="btn btn-primary">Start Your Qualifier</a>
+            <a href="#contact" className="btn btn-primary">Start Your Qualifier</a>
             <a href="mailto:ben@gocarraway.com" className="btn btn-ghost">Send a Direct Email</a>
           </div>
         </div>

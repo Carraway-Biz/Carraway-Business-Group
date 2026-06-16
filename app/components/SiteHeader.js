@@ -11,6 +11,7 @@ const NAV = [
 
 export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -19,10 +20,17 @@ export default function SiteHeader() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${scrolled || menuOpen ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
+        <a href="/" className={styles.brand} aria-label="Carraway Capital — home" onClick={closeMenu}>
           <img
             src="/Carrawaylogo.svg"
             alt="Carraway Capital"
@@ -41,7 +49,32 @@ export default function SiteHeader() {
 
         <div className={styles.actions}>
           <a href="https://cal.com/carrawaycapital/discovery-call" target="_blank" rel="noopener noreferrer" className="btn btn-ghost">Book a Call</a>
-          <a href="#qualifier" className="btn btn-primary">Start Your Qualifier</a>
+          <a href="#contact" className="btn btn-primary">Start Your Qualifier</a>
+        </div>
+
+        <button
+          type="button"
+          className={styles.menuToggle}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span className={`${styles.menuBar} ${menuOpen ? styles.menuBarOpenTop : ''}`} />
+          <span className={`${styles.menuBar} ${menuOpen ? styles.menuBarOpenBottom : ''}`} />
+        </button>
+      </div>
+
+      <div className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}>
+        <nav className={styles.mobileNav} aria-label="Primary mobile">
+          {NAV.map((item) => (
+            <a key={item.href} href={item.href} className={styles.mobileNavLink} onClick={closeMenu}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <div className={styles.mobileActions}>
+          <a href="https://cal.com/carrawaycapital/discovery-call" target="_blank" rel="noopener noreferrer" className="btn btn-ghost" onClick={closeMenu}>Book a Call</a>
+          <a href="#contact" className="btn btn-primary" onClick={closeMenu}>Start Your Qualifier</a>
         </div>
       </div>
     </header>
