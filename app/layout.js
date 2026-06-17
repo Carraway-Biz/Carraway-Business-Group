@@ -25,6 +25,11 @@ const plexMono = IBM_Plex_Mono({
 export const metadata = {
   title:       'Carraway Capital — Commercial Capital, Brokered with Intent',
   description: 'Carraway Capital connects established businesses with the funding to grow — from working capital to acquisitions, structured around how you actually operate.',
+  icons: {
+    icon:             [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    shortcut:         '/favicon.svg',
+    apple:            [{ url: '/favicon.svg', sizes: '180x180' }],
+  },
 };
 
 export default function RootLayout({ children }) {
