@@ -15,9 +15,10 @@ export default function Footer() {
         <div className={styles.top}>
           <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
             <img
-              src="/Carrawaylogo.svg"
+              src="/carraway-logo.png"
               alt="Carraway Capital"
-              height="36"
+              width="120"
+              height="44"
               className={styles.logo}
             />
           </a>

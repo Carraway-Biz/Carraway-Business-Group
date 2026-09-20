@@ -32,9 +32,10 @@ export default function SiteHeader() {
       <div className={`container ${styles.inner}`}>
         <a href="/" className={styles.brand} aria-label="Carraway Capital — home" onClick={closeMenu}>
           <img
-            src="/Carrawaylogo.svg"
+            src="/carraway-logo.png"
             alt="Carraway Capital"
-            height="32"
+            width="131"
+            height="48"
             className={styles.logo}
           />
         </a>
