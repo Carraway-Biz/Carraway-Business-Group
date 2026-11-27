@@ -20,7 +20,7 @@ export default function Hero() {
         <div className={styles.bottom}>
           <div className={styles.bottomLeft}>
             <p className={styles.subhead}>
-              Carraway Capital connects established businesses with the funding to grow —
+              Carraway Business Capital connects established businesses with the funding to grow —
               from working capital to acquisitions, structured around how you actually operate.
             </p>
           </div>

@@ -1,3 +1,4 @@
+import Eyebrow from './Eyebrow';
 import styles from './Footer.module.css';
 
 const NAV = [
@@ -13,15 +14,18 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
 
         <div className={styles.top}>
-          <a href="/" className={styles.brand} aria-label="Carraway Business Capital — home">
-            <img
-              src="/carraway-logo.png"
-              alt="Carraway Business Capital"
-              width="201"
-              height="44"
-              className={styles.logo}
-            />
-          </a>
+          <div className={styles.brandBlock}>
+            <a href="/" className={styles.brand} aria-label="Carraway Business Capital — home">
+              <img
+                src="/carraway-logo.png"
+                alt="Carraway Business Capital"
+                width="201"
+                height="44"
+                className={styles.logo}
+              />
+            </a>
+            <Eyebrow>Go Forward.</Eyebrow>
+          </div>
 
           <nav className={styles.nav} aria-label="Footer">
             {NAV.map((item) => (
@@ -36,10 +40,10 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p className={styles.legal}>
-            © {new Date().getFullYear()} Carraway Capital. All rights reserved.
+            © {new Date().getFullYear()} Carraway Business Capital. All rights reserved.
           </p>
           <p className={styles.disclaimer}>
-            Carraway Capital is a commercial capital brokerage. We connect businesses
+            Carraway Business Capital is a commercial capital brokerage. We connect businesses
             with third-party lenders across our network. We do not originate, fund,
             or hold loans directly.
           </p>
