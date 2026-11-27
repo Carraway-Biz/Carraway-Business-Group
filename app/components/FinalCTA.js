@@ -7,7 +7,7 @@ export default function FinalCTA() {
 
         <div className={styles.top}>
           <h2 className={styles.headline}>
-            The right capital structure starts with one conversation.
+            Ready to go forward?
           </h2>
         </div>
 
@@ -15,6 +15,7 @@ export default function FinalCTA() {
 
         <div className={styles.bottom}>
           <p className={styles.sub}>
+            The right capital structure starts with one conversation.
             Tell us about your business and what you're trying to accomplish.
             We'll tell you where you fit across our lender network — and whether
             we're the right partner for this deal.

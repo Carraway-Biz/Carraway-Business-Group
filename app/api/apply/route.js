@@ -127,7 +127,7 @@ async function sendResendEmail(applicationId, payload) {
       </table>
 
       <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);text-align:center">
-        <p style="color:#6B7280;font-size:12px;margin:0">Submitted ${new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' })} MST · Carraway Capital</p>
+        <p style="color:#6B7280;font-size:12px;margin:0">Submitted ${new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' })} MST · Carraway Business Capital</p>
       </div>
     </div>
   </div>

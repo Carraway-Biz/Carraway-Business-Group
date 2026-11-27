@@ -30,7 +30,7 @@ export default function About() {
 
           <div className={styles.body}>
             <p>
-              Ben Carraway founded Carraway Capital after a career spent inside the
+              Ben Carraway founded Carraway Business Capital after a career spent inside the
               numbers — as an FP&amp;A analyst building the board-level models and
               forecasts that guide real operating decisions. He holds an MBA in Global
               Management from the Thunderbird School of Global Management and started
@@ -40,7 +40,12 @@ export default function About() {
               and treats your next move like it&apos;s his own.
             </p>
             <p>
-              Carraway Capital was founded on a simple premise: business owners deserve
+              His personal motto is two words: Go forward. It&apos;s how he approaches
+              his own life, and it&apos;s what he helps every client do: find the capital
+              to take the next step, then take it.
+            </p>
+            <p>
+              Carraway was founded on a simple premise: business owners deserve
               a capital partner who works at their speed and structures solutions around
               how they actually operate — not around what a single lender happens to offer.
               We connect established businesses with the right capital across a vetted
