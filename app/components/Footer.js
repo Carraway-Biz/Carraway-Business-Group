@@ -13,11 +13,11 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
 
         <div className={styles.top}>
-          <a href="/" className={styles.brand} aria-label="Carraway Capital — home">
+          <a href="/" className={styles.brand} aria-label="Carraway Business Capital — home">
             <img
               src="/carraway-logo.png"
-              alt="Carraway Capital"
-              width="120"
+              alt="Carraway Business Capital"
+              width="201"
               height="44"
               className={styles.logo}
             />

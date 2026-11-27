@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   const product = PRODUCTS[slug];
   if (!product) return {};
   return {
-    title: `${product.name} — Carraway Capital`,
+    title: `${product.name} — Carraway Business Capital`,
     description: product.position,
   };
 }
