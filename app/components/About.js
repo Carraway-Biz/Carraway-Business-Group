@@ -9,7 +9,7 @@ export default function About() {
 
         <div className={styles.imageWrap}>
           <Image
-            src="/Bcarraway.jpg"
+            src="/images/ben-carraway.jpg"
             alt="Ben Carraway"
             fill
             className={styles.image}

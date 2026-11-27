@@ -30,11 +30,11 @@ export default function SiteHeader() {
   return (
     <header className={`${styles.header} ${scrolled || menuOpen ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
-        <a href="/" className={styles.brand} aria-label="Carraway Capital — home" onClick={closeMenu}>
+        <a href="/" className={styles.brand} aria-label="Carraway Business Capital — home" onClick={closeMenu}>
           <img
             src="/carraway-logo.png"
-            alt="Carraway Capital"
-            width="131"
+            alt="Carraway Business Capital"
+            width="219"
             height="48"
             className={styles.logo}
           />

@@ -22,13 +22,28 @@ const plexMono = IBM_Plex_Mono({
   display: 'swap',
 });
 
+const SITE_NAME   = 'Carraway Business Capital';
+const TITLE       = 'Carraway Business Capital — Commercial Capital, Brokered with Intent';
+const DESCRIPTION = 'Carraway Business Capital connects established businesses with the funding to grow — from working capital to acquisitions, structured around how you actually operate.';
+
+// Favicon and Apple touch icon come from app/icon.png and app/apple-icon.png
+// (Next.js App Router file conventions), so no `icons` entry is needed here.
 export const metadata = {
-  title:       'Carraway Capital — Commercial Capital, Brokered with Intent',
-  description: 'Carraway Capital connects established businesses with the funding to grow — from working capital to acquisitions, structured around how you actually operate.',
-  icons: {
-    icon:             [{ url: '/favicon.svg', type: 'image/svg+xml' }],
-    shortcut:         '/favicon.svg',
-    apple:            [{ url: '/favicon.svg', sizes: '180x180' }],
+  metadataBase: new URL('https://gocarraway.com'),
+  title:       TITLE,
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  openGraph: {
+    type:        'website',
+    url:         '/',
+    siteName:    SITE_NAME,
+    title:       TITLE,
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card:        'summary',
+    title:       TITLE,
+    description: DESCRIPTION,
   },
 };
 
